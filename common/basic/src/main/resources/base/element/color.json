@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "nav_title_text_font",
+      "value": "#000000"
+    },
+    {
+      "name": "loading_simple_progress_background",
+      "value": "#cccccc"
+    },
+    {
+      "name": "loading_simple_progress_title_font",
+      "value": "#cccccc"
+    },
+    {
+      "name": "handleCardNormal_title_font",
+      "value": "#ffffff"
+    },
+    {
+      "name": "handleCardNormal_text_font",
+      "value": "#cdcffe"
+    },
+    {
+      "name": "NoticeCard_date_viewnum_font",
+      "value": "#FFB5B3B3"
+    },
+    {
+      "name": "NoticeCard_viewnum_font",
+      "value": "#309bff"
+    },
+    {
+      "name": "card_background",
+      "value": "#ffffff"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "float": [
+    {
+      "name": "title_text",
+      "value": "18vp"
+    },
+    {
+      "name": "textinput_icon",
+      "value": "20vp"
+    },
+    {
+      "name": "other_op_text",
+      "value": "12vp"
+    },
+    {
+      "name": "textinput_check",
+      "value": "14"
+    },
+    {
+      "name": "tabs_glyph",
+      "value": "20"
+    },
+    {
+      "name": "tabs_title",
+      "value": "16"
+    },
+    {
+      "name": "workSpaceComp_nav",
+      "value": "16vp"
+    },
+    {
+      "name": "affairItemCard_title",
+      "value": "16vp"
+    },
+    {
+      "name": "affairItemCard_text",
+      "value": "14vp"
+    },
+    {
+      "name": "work_page_user_info_nick",
+      "value": "18vp"
+    },
+    {
+      "name": "work_page_user_info_detail",
+      "value": "14vp"
+    },
+    {
+      "name": "work_page_card_text_big",
+      "value": "18"
+    },
+    {
+      "name": "workSpaceComp_item_text",
+      "value": "16vp"
+    },
+    {
+      "name": "workSpaceComp_item_date",
+      "value": "12vp"
+    },
+    {
+      "name": "workSpaceComp_item_glyph",
+      "value": "22vp"
+    }
+  ]
+}

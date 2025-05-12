@@ -1,0 +1,44 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "nav_title_text",
+      "value": "20vp"
+    },
+    {
+      "name": "nav_glyph",
+      "value": "25vp"
+    },
+    {
+      "name": "handleCardNormal_title",
+      "value": "20"
+    },
+    {
+      "name": "handleCardNormal_text",
+      "value": "14"
+    },
+    {
+      "name": "WorkCardNormal_text",
+      "value": "14"
+    },
+    {
+      "name": "WorkCardNormal_glyph",
+      "value": "25"
+    },
+    {
+      "name": "NoticeCard_text",
+      "value": "16"
+    },
+    {
+      "name": "NoticeCard_date_viewnum",
+      "value": "12"
+    },
+    {
+      "name": "NoticeCard_glyph",
+      "value": "15"
+    }
+  ]
+}
