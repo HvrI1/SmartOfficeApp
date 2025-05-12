@@ -87,47 +87,49 @@ export struct Contacts{
 
 
       //组织内卡片区域
-      Column({space:20}){
-        Text("组织内")
-          .width("100%")
-          .fontColor($r("app.color.Contacts_gray"))
-        Row({space:15}){
-          Image($r("[basic].media.school_icon"))
-            .width(40)
-            .aspectRatio(1)
-            .borderRadius(50)
-          Column({space:5}){
-            Text("荆楚理工学院")
-              .fontSize($r("app.float.title_text"))
-              .fontWeight(FontWeight.Bold)
-              .width("100%")
-            Text("2489人")
-              .fontSize($r("app.float.title_text_little"))
-              .fontColor($r("app.color.Contacts_gray"))
-              .width("100%")
-          }
-          .layoutWeight(1)
-          .justifyContent(FlexAlign.SpaceBetween)
-        }
-        .width("100%")
-        //循环生成架构列表
-        ForEach(this.organizationList,(item:string,index:number)=>{
-          FoldNav({
-            title:item,
-            isShowLeftIcon:true,
-            Content:()=>{
-              this.OrganizationItem(item)
+      Scroll(){
+        Column({space:20}){
+          Text("组织内")
+            .width("100%")
+            .fontColor($r("app.color.Contacts_gray"))
+          Row({space:15}){
+            Image($r("[basic].media.school_icon"))
+              .width(40)
+              .aspectRatio(1)
+              .borderRadius(50)
+            Column({space:5}){
+              Text("荆楚理工学院")
+                .fontSize($r("app.float.title_text"))
+                .fontWeight(FontWeight.Bold)
+                .width("100%")
+              Text("2489人")
+                .fontSize($r("app.float.title_text_little"))
+                .fontColor($r("app.color.Contacts_gray"))
+                .width("100%")
             }
+            .layoutWeight(1)
+            .justifyContent(FlexAlign.SpaceBetween)
+          }
+          .width("100%")
+          //循环生成架构列表
+          ForEach(this.organizationList,(item:string,index:number)=>{
+            FoldNav({
+              title:item,
+              isShowLeftIcon:true,
+              Content:()=>{
+                this.OrganizationItem(item)
+              }
+            })
           })
-        })
 
 
+        }
+        .width("90%")
+        .padding(10)
+        .backgroundColor($r("app.color.Contacts_card_background"))
+        .borderRadius(10)
       }
-      .width("90%")
-      .padding(10)
-      .backgroundColor($r("app.color.Contacts_card_background"))
-      .borderRadius(10)
-
+      .width("100%")
 
 
 

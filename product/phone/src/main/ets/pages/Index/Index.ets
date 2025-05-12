@@ -34,7 +34,7 @@ struct Index {
 
   //状态：tabs当前选中的下标
   @State
-  currentIndex:number = 2
+  currentIndex:number = 3
 
   //tabs的按钮导航
   @Builder

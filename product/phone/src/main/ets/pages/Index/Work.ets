@@ -344,7 +344,7 @@ export struct Work{
           .margin({right:15})
         }
         .width("90%")
-        .height(120)
+        .height(100)
         //待我审批和我发起的卡片区域
         Row({space:10}){
           //待我审批

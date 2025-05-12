@@ -47,6 +47,14 @@
     {
       "name": "FoldNav_glyph",
       "value": "20"
+    },
+    {
+      "name": "nav_glyph_little",
+      "value": "18vp"
+    },
+    {
+      "name": "nav_title_text_little",
+      "value": "16vp"
     }
   ]
 }

@@ -79,6 +79,14 @@
     {
       "name": "title_text_little",
       "value": "12vp"
+    },
+    {
+      "name": "Mine_card_text",
+      "value": "12vp"
+    },
+    {
+      "name": "Mine_card_title",
+      "value": "16vp"
     }
   ]
 }

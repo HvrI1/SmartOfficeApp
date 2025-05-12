@@ -2,6 +2,7 @@ export class TabClass{
   title:string = ""
   name:string = ""
   icon?:ResourceStr
+  color?:ResourceColor
 }
 
 export class HandleCardClass{

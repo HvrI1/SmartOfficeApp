@@ -146,7 +146,23 @@
     },
     {
       "name": "Contacts_gray",
-      "value": "#FFB0B0B0"
+      "value": "#80EAEAEA"
+    },
+    {
+      "name": "mine_background",
+      "value": "#FFF1F1F1"
+    },
+    {
+      "name": "Mine_card_title",
+      "value": "#309bff"
+    },
+    {
+      "name": "Mine_card_text",
+      "value": "#afafaf"
+    },
+    {
+      "name": "mine_card_background",
+      "value": "#ffffff"
     }
   ]
 }
