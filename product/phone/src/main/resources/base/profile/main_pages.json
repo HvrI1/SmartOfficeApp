@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index/Index",
+    "pages/Advert/Advert",
+    "pages/Login/Login"
+  ]
+}

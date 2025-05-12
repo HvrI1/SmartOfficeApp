@@ -12,6 +12,7 @@ export struct TitleNav{
       Text(this.title)
         .fontSize($r("app.float.nav_title_text"))
         .fontWeight(FontWeight.Bold)
+      Blank()
       if(this.isShowIcon){
         SymbolGlyph($r("sys.symbol.chevron_right"))
           .fontSize($r("app.float.nav_glyph"))

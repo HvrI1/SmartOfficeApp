@@ -1,0 +1,152 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_text_font",
+      "value": "#000000"
+    },
+    {
+      "name": "textinput_row_background",
+      "value": "#FFF2F2F2"
+    },
+    {
+      "name": "lucency",
+      "value": "#00000000"
+    },
+    {
+      "name": "textinput_placeholder_font",
+      "value": "#FFB0B0B0"
+    },
+    {
+      "name": "button_login_background",
+      "value": "#7c82fd"
+    },
+    {
+      "name": "button_login_font",
+      "value": "#f8f9ff"
+    },
+    {
+      "name": "other_op_text_font",
+      "value": "#3197f9"
+    },
+    {
+      "name": "textinput_check_false_font",
+      "value": "#ff0000"
+    },
+    {
+      "name": "textinput_check_true_font",
+      "value": "#FF5AF308"
+    },
+    {
+      "name": "button_advert_background",
+      "value": "#eee"
+    },
+    {
+      "name": "tabs_glyph_true_font",
+      "value": "#02aaf5"
+    },
+    {
+      "name": "tabs_glyph_false_font",
+      "value": "#000000"
+    },
+    {
+      "name": "tabs_bar_background",
+      "value": "#f2f2f2"
+    },
+    {
+      "name": "page_background_normal",
+      "value": "#FFE6E9EE"
+    },
+    {
+      "name": "workSpaceComp_background",
+      "value": "#ffffff"
+    },
+    {
+      "name": "workSpaceComp_nav_false",
+      "value": "#a7a7a7"
+    },
+    {
+      "name": "affairItemCard_background",
+      "value": "#C4D8E3FA"
+    },
+    {
+      "name": "affairItemCard_date",
+      "value": "#7a7c80"
+    },
+    {
+      "name": "workSpaceComp_nav_true",
+      "value": "#000000"
+    },
+    {
+      "name": "workSpaceComp_nav_border_true",
+      "value": "#FF1466EE"
+    },
+    {
+      "name": "excellent_teacher_background",
+      "value": "#fdc844"
+    },
+    {
+      "name": "excellent_teacher_text",
+      "value": "#ffffff"
+    },
+    {
+      "name": "work_page_card_glyph_waiting",
+      "value": "#FFF57A1D"
+    },
+    {
+      "name": "work_page_card_glyph_finish",
+      "value": "#FF2B6FF5"
+    },
+    {
+      "name": "workSpaceComp_item_border_meeting_left",
+      "value": "#397ef0"
+    },
+    {
+      "name": "workSpaceComp_item_border_meeting_bottom",
+      "value": "#a7b1c1"
+    },
+    {
+      "name": "workSpaceComp_item_text_font_gray",
+      "value": "#a7b1c1"
+    },
+    {
+      "name": "workSpaceComp_item_tag",
+      "value": "#e7f0fd"
+    },
+    {
+      "name": "workSpaceComp_item_text_font_tag",
+      "value": "#397ef0"
+    },
+    {
+      "name": "workSpaceComp_item_text_font_tag_partment",
+      "value": "#f28b24"
+    },
+    {
+      "name": "workSpaceComp_item_tag_partment",
+      "value": "#fff7e6"
+    },
+    {
+      "name": "workSpaceComp_item_text_font_tag_type",
+      "value": "#fb6f5d"
+    },
+    {
+      "name": "workSpaceComp_item_tag_type",
+      "value": "#fee3df"
+    },
+    {
+      "name": "Contacts_card_background",
+      "value": "#ffffff"
+    },
+    {
+      "name": "Contacts_background",
+      "value": "#f5f7fa"
+    },
+    {
+      "name": "Contacts_gray",
+      "value": "#FFB0B0B0"
+    }
+  ]
+}

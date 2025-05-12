@@ -39,6 +39,14 @@
     {
       "name": "NoticeCard_glyph",
       "value": "15"
+    },
+    {
+      "name": "FoldNav_title",
+      "value": "16vp"
+    },
+    {
+      "name": "FoldNav_glyph",
+      "value": "20"
     }
   ]
 }

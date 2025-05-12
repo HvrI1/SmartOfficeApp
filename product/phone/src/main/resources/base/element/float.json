@@ -1,6 +1,10 @@
 {
   "float": [
     {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
       "name": "title_text",
       "value": "18vp"
     },
@@ -45,12 +49,20 @@
       "value": "14vp"
     },
     {
+      "name": "work_page_card_glyph_normal",
+      "value": "30"
+    },
+    {
       "name": "work_page_card_text_big",
       "value": "18"
     },
     {
+      "name": "work_page_card_num",
+      "value": "22"
+    },
+    {
       "name": "workSpaceComp_item_text",
-      "value": "16vp"
+      "value": "14vp"
     },
     {
       "name": "workSpaceComp_item_date",
