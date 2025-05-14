@@ -1,6 +1,6 @@
 import { AffairStateType, BacKNav, HandleCardNormal, NoticeCard, TitleNav, USER_INFO, WorkCardNormal } from "basic"
 import { AdvertInfo, HandleCardClass, NoticeInfo, User, WorkCardClass,AffairInfo } from "../../pojo"
-import { promptAction } from "@kit.ArkUI"
+import { promptAction, router } from "@kit.ArkUI"
 import { getAffairApi,getUserNoticeApi,getAdvertByPosition } from "../../api/"
 
 @Component
@@ -223,7 +223,7 @@ export struct House{
     Column(){
       //头部导航区域
       BacKNav({
-        title:"荆楚理工学院智慧办公平台",
+        title:"成功学院智慧办公平台",
         isShowBack:false,
         isShowSearch:true,
         searchCallBack:()=>{
@@ -269,7 +269,7 @@ export struct House{
                      case "我的审批" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "我的考勤" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "考勤打卡" :promptAction.showToast({message:item.text});break;//TODO:回调
+                     case "考勤打卡" :router.pushUrl({url:"pages/ClockIn/ClockIn"});break;//回调
                      case "会议预约" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "更多功能" :promptAction.showToast({message:item.text});break;//TODO:回调
                    }
@@ -333,12 +333,6 @@ export struct House{
 
          //事务待办区域
          this.workSpaceComp()
-
-
-
-
-
-
        }
 
      }
@@ -346,7 +340,7 @@ export struct House{
     }
     .width("100%")
     .height("100%")
-    .padding({bottom:75})
+    .padding({bottom:55})
     .backgroundColor($r("app.color.page_background_normal"))
   }
 }

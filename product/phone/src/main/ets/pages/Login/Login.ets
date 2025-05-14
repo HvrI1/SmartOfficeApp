@@ -27,6 +27,7 @@ struct Login {
       //开启动画
       this.layer.open()
       //调用接口登录
+      //TODO:这个地方也应该捕获异常，请求不到数据就响应超时
       let res_token =  await loginApi({username:this.username,password:this.password} as UserLoginDto)
       if(res_token.code === 200){
         //异步执行：将token存入或更新至首选项

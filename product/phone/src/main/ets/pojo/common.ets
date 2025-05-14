@@ -16,3 +16,10 @@ export class WorkCardClass{
   text:string =""
   iconColor:string = ""
 }
+
+
+export class WebAddressResp{
+  name:string = ""
+  address:string =""
+  distance:number =0
+}

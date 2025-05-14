@@ -87,6 +87,22 @@
     {
       "name": "Mine_card_title",
       "value": "16vp"
+    },
+    {
+      "name": "clockin_text_normal",
+      "value": "18vp"
+    },
+    {
+      "name": "clockin_text_little",
+      "value": "14vp"
+    },
+    {
+      "name": "clockin_text_glyph",
+      "value": "23vp"
+    },
+    {
+      "name": "clockin_text_bigger",
+      "value": "20vp"
     }
   ]
 }

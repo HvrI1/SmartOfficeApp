@@ -163,6 +163,54 @@
     {
       "name": "mine_card_background",
       "value": "#ffffff"
+    },
+    {
+      "name": "clockin_text_gray",
+      "value": "#FF8F8F8F"
+    },
+    {
+      "name": "clockin_text_blue",
+      "value": "#1890ff"
+    },
+    {
+      "name": "clockin_button",
+      "value": "#8591fb"
+    },
+    {
+      "name": "clockin_text_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "clockin_location_bacground",
+      "value": "#FFF3F3F3"
+    },
+    {
+      "name": "page_nav_background_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "button_primary",
+      "value": "#1890ff"
+    },
+    {
+      "name": "button_primary_disabled",
+      "value": "#c2c6cc"
+    },
+    {
+      "name": "WebCustomDiaLog_text_name",
+      "value": "#2A2929"
+    },
+    {
+      "name": "WebCustomDiaLog_text_distance",
+      "value": "#818181"
+    },
+    {
+      "name": "clockin_text_green",
+      "value": "#82b440"
+    },
+    {
+      "name": "clockin_text_red",
+      "value": "#ff0000"
     }
   ]
 }
