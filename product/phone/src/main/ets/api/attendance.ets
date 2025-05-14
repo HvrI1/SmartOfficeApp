@@ -14,3 +14,9 @@ export const queryUserAttendanceInfoApi = async (userId:number)=>{
 }
 
 
+
+  //接口定义：刷新操作，根据用户id查询当天的打卡记录
+export const queryUserAllAttendanceInfoApi = async (userId:number)=>{
+  const res:Result<AttendanceInfo[]> =  await RequestAxios.get<Result<AttendanceInfo[]>>(`/attendance/queryUserAllAttendanceInfoByUserId?userId=${userId}`)
+  return res
+}

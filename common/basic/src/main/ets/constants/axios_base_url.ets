@@ -5,5 +5,5 @@
 
 //本地测试
 export enum RequestInfo{
-  BASE_URL = "192.168.0.101:8080"
+  BASE_URL = "192.168.0.100:8080"
 }

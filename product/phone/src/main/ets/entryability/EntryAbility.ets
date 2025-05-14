@@ -46,6 +46,9 @@ async function checkAutoLogin(windowStage: window.WindowStage,context:Context){
   }
   //将token存入AppStorage
   AppStorage.setOrCreate(TOKEN_KEY,token)
+
+  windowStage.loadContent("pages/Attendance/Attendance")//TODO:测试
+
   //做一次拿数据信息的请求
   //TODO:应该设置请求最长时间，加载不到不能一直卡在这里
   const res = await queryUserInfoByUsernameApi(userLocalInfo.username)
@@ -59,7 +62,7 @@ async function checkAutoLogin(windowStage: window.WindowStage,context:Context){
     promptAction.showToast({message:"用户已登录"})
     if(userRemoteInfo.isVip === "普通用户"){
       //TODO:后续需要改回来 windowStage.loadContent("pages/Advert/Advert")//跳转至广告
-       windowStage.loadContent("pages/ClockIn/ClockIn")//测试
+       windowStage.loadContent("pages/Attendance/Attendance")//测试
     }else {
       windowStage.loadContent("pages/Index/Index")//跳转至登录
     }

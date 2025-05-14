@@ -267,7 +267,7 @@ export struct House{
                      case "我的工作" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "消息提醒" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "我的审批" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "我的考勤" :promptAction.showToast({message:item.text});break;//TODO:回调
+                     case "我的考勤" :router.pushUrl({url:"pages/Attendance/Attendance"});break;//:回调
                      case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "考勤打卡" :router.pushUrl({url:"pages/ClockIn/ClockIn"});break;//回调
                      case "会议预约" :promptAction.showToast({message:item.text});break;//TODO:回调

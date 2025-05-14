@@ -211,6 +211,42 @@
     {
       "name": "clockin_text_red",
       "value": "#ff0000"
+    },
+    {
+      "name": "Calendar_text_gray",
+      "value": "#FFCAC7C7"
+    },
+    {
+      "name": "Calendar_text_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "Calendar_text_primary",
+      "value": "#2A2929"
+    },
+    {
+      "name": "Calendar_text_red",
+      "value": "#ff0000"
+    },
+    {
+      "name": "Calendar_background",
+      "value": "#ffffff"
+    },
+    {
+      "name": "Calendar_attendance_normal",
+      "value": "#2f7dd5"
+    },
+    {
+      "name": "Calendar_attendance_exception",
+      "value": "#fac11a"
+    },
+    {
+      "name": "Calendar_item_card_background",
+      "value": "#72BFD5FA"
+    },
+    {
+      "name": "Calendar_item_card_background_exception",
+      "value": "#43FFBDBB"
     }
   ]
 }
