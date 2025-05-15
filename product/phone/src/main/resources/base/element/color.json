@@ -247,6 +247,58 @@
     {
       "name": "Calendar_item_card_background_exception",
       "value": "#43FFBDBB"
+    },
+    {
+      "name": "MeetingSubscribe_tab_bar_border",
+      "value": "#4b6eaf"
+    },
+    {
+      "name": "MeetingTabList_background_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "MeetingTabList_text_gray",
+      "value": "#808080"
+    },
+    {
+      "name": "MeetingTabList_button_background",
+      "value": "#e8f0fd"
+    },
+    {
+      "name": "MeetingTabList_button_font",
+      "value": "#4183f1"
+    },
+    {
+      "name": "MeetingSubscribe_card_background_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "MeetingCheckList_check_state_background",
+      "value": "#ff6c37"
+    },
+    {
+      "name": "MeetingCheckList_check_state_font",
+      "value": "#ffffff"
+    },
+    {
+      "name": "MeetingCheckList_finish_state_background",
+      "value": "#31dd71"
+    },
+    {
+      "name": "MeetingCheckList_finish_state_font",
+      "value": "#ffffff"
+    },
+    {
+      "name": "loading_progress_color",
+      "value": "#214283"
+    },
+    {
+      "name": "button_font_gray",
+      "value": "#FFBFBFBF"
+    },
+    {
+      "name": "button_background_gray",
+      "value": "#FFEFEEEE"
     }
   ]
 }

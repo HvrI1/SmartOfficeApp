@@ -270,7 +270,7 @@ export struct House{
                      case "我的考勤" :router.pushUrl({url:"pages/Attendance/Attendance"});break;//:回调
                      case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "考勤打卡" :router.pushUrl({url:"pages/ClockIn/ClockIn"});break;//回调
-                     case "会议预约" :promptAction.showToast({message:item.text});break;//TODO:回调
+                     case "会议预约" :router.pushUrl({url:"pages/MeetingSubscribe/MeetingSubscribe"});break;//回调
                      case "更多功能" :promptAction.showToast({message:item.text});break;//TODO:回调
                    }
                  }

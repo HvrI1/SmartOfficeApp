@@ -83,6 +83,14 @@
     {
       "name": "clockin_text_bigger",
       "value": "20vp"
+    },
+    {
+      "name": "MeetingTabList_text_normal",
+      "value": "16vp"
+    },
+    {
+      "name": "MeetingTabList_text_little",
+      "value": "14vp"
     }
   ]
 }

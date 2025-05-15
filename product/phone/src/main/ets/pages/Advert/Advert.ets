@@ -44,7 +44,6 @@ struct Advert{
   //请求广告数据
   async  getAdvertInfo(){
     const res:Result<AdvertInfo[]> = await getAdvertByPosition({position:"app_open",advertNum:1})
-    console.info(JSON.stringify(res))
     if(res.code ===200){
       const advertList:AdvertInfo[] = res.data as AdvertInfo[]
       this.advert = advertList[0]

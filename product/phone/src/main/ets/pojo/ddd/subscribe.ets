@@ -1,5 +1,6 @@
+import { AffairInfo, User } from "..";
 import { CarSubscribeInfo } from "../car";
-import { MeetingSubscribeInfo } from "../meeting";
+import { MeetingRoomInfo, MeetingSubscribeInfo } from "../meeting";
 
 export interface SubscribeDDDInfo{
   carSubscribeVoList:CarSubscribeInfo[]
@@ -14,5 +15,30 @@ export class SubscribeDDDModel implements SubscribeDDDInfo{
     this.carSubscribeVoList = model.carSubscribeVoList;
     this.meetingSubscribeVoList = model.meetingSubscribeVoList;
   }
+}
+
+
+
+export interface  SubscribeMeetingDDDInfo{
+  meetingRoom:MeetingRoomInfo,
+  user:User,
+  affair:AffairInfo,
+  meetingSubscribe:MeetingSubscribeInfo
+}
+
+export class SubscribeMeetingDDDModel implements SubscribeMeetingDDDInfo{
+  meetingRoom: MeetingRoomInfo;
+  user: User;
+  affair: AffairInfo;
+  meetingSubscribe: MeetingSubscribeInfo;
+
+  constructor(model:SubscribeMeetingDDDInfo) {
+    this.meetingRoom = model.meetingRoom;
+    this.user = model.user;
+    this.affair = model.affair;
+    this.meetingSubscribe = model.meetingSubscribe;
+  }
+
+
 }
 

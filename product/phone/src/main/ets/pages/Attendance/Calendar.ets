@@ -18,7 +18,7 @@ export struct CalendarAttendance{
 
   //状态：父传子单向 当前日期
   @Watch("updateDays")
-  @State currentDate:string = ""
+  @Prop currentDate:string
 
   //当前用户的信息
   @StorageProp(USER_INFO)
@@ -34,6 +34,8 @@ export struct CalendarAttendance{
   //状态：当前月的所有天的对象数组
   @State days:DateItem[] = []
 
+  //状态：当前选中的下标
+  @State currentIndex:number = -1
 
   //状态：选中天的打卡详情AttendanceInfo
   @State currentAttendance:AttendanceInfo[]=[]
@@ -164,12 +166,15 @@ export struct CalendarAttendance{
 
   //方法：调用接口获取当前用户的所有打卡记录
   async queryUserAllAttendance(){
-    const res = await queryUserAllAttendanceInfoApi(this.userInfo.id as number)
-    if(res.code === 200){
-      this.userAllAttendanceList = res.data as AttendanceInfo[]
-    }else {
-      promptAction.showToast({message:res.message})
+    if(this.userInfo.id){
+      const res = await queryUserAllAttendanceInfoApi(this.userInfo.id)
+      if(res.code === 200){
+        this.userAllAttendanceList = res.data as AttendanceInfo[]
+      }else {
+        promptAction.showToast({message:res.message})
+      }
     }
+
   }
 
 
@@ -244,7 +249,6 @@ export struct CalendarAttendance{
     })
 
     this.getCurrentAttendanceList(this.currentDateItem)
-    console.log(JSON.stringify(this.currentAttendance))
   }
 
 
@@ -318,11 +322,11 @@ export struct CalendarAttendance{
                 .aspectRatio(1)
                 .textAlign(TextAlign.Center)
                 .borderRadius(10)
-                .fontColor(item.isSelect?$r("app.color.Calendar_text_white") :
+                .fontColor(item.isSelect || this.currentIndex === index?$r("app.color.Calendar_text_white") :
                 //第二套三目运算
                   this.isTheMonth(item)? $r("app.color.Calendar_text_primary"):$r("app.color.Calendar_text_gray")
                 )//TODO:日历字体颜色自行替换
-                .backgroundColor(item.isSelect?$r("app.color.Calendar_text_red"):$r("app.color.Calendar_text_white"))
+                .backgroundColor(item.isSelect?$r("app.color.Calendar_text_red"):this.currentIndex === index?$r("app.color.clockin_text_blue"):$r("app.color.Calendar_text_white"))
                 .fontWeight(item.isSelect?FontWeight.Bold:FontWeight.Normal)
               if(this.isTheMonth(item) && this.isShowAttendanceIcon(item)){
                 Text("")
@@ -337,6 +341,8 @@ export struct CalendarAttendance{
               }
             }
             .onClick(()=>{
+              //改变下标
+              this.currentIndex = index
               //点击对应日期显示详情
               this.getCurrentAttendanceList(item)
             })

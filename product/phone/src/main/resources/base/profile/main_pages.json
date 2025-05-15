@@ -4,6 +4,7 @@
     "pages/Advert/Advert",
     "pages/Login/Login",
     "pages/Attendance/Attendance",
-    "pages/ClockIn/ClockIn"
+    "pages/ClockIn/ClockIn",
+    "pages/MeetingSubscribe/MeetingSubscribe"
   ]
 }

@@ -44,8 +44,7 @@ struct ClockIn {
         this.morningAttendanceInfo = res.data as AttendanceInfo
         this.isChange=false
       }else if(res.data?.attendanceSection === "下午"){
-        this.morningAttendanceInfo = res.data as AttendanceInfo
-
+        this.afternoonAttendanceInfo = res.data as AttendanceInfo
       }
     }else {
       //失败
@@ -79,6 +78,16 @@ struct ClockIn {
       promptAction.showToast({message:res.message})
     }
   }
+  //方法：是否可以点击打卡
+  isCanClick(){
+    if(this.afternoonAttendanceInfo.attendanceDate==undefined){
+      return true
+    }else {
+      promptAction.showToast({message:"下班打卡已完成，不可继续打卡"})
+      return false
+    }
+  }
+
 
   //生命周期
   aboutToAppear(): void {
@@ -236,7 +245,7 @@ struct ClockIn {
         isChange:this.isChange,
         clickCallBack:this.clockIn
       })
-        .enabled(this.afternoonAttendanceInfo.attendanceDate==undefined)
+        .enabled(this.isCanClick())
         .margin({top:15})
 
 
