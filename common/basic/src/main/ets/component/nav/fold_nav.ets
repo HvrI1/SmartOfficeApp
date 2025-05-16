@@ -11,12 +11,15 @@ export struct FoldNav{
 
   @BuilderParam
   Content:()=>void
+
   build() {
     Column({space:10}){
       Row({space:10}){
-       Image($r("app.media.more_icon"))
-         .width(17)
-         .aspectRatio(1)
+        if(this.isShowLeftIcon){
+          Image($r("app.media.more_icon"))
+            .width(17)
+            .aspectRatio(1)
+        }
         Text(this.title)
           .fontSize($r("app.float.FoldNav_title"))
         Blank()
@@ -32,6 +35,6 @@ export struct FoldNav{
       }
     }
     .width("100%")
-    .padding({left:15})
+    .padding(10)
   }
 }

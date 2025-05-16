@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aaa {
+            color: brown;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '2025年度审批数量图'
+        },
+        tooltip: {},
+        legend: {
+            data: ['审批数量']
+        },
+        xAxis: {
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+        },
+        yAxis: {},
+        series: [
+            {
+                name: '审批数量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 21, 40, 10, 18, 22, 70, 69]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+
+    window.onload = () => {
+        //调用鸿蒙端，代理注册过来的函数
+        window.Approval.queryAllAffair()
+    }
+
+
+</script>
+
+</html>

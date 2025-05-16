@@ -120,13 +120,16 @@ export struct House{
           })
       }
       .width("100%")
-      Column({space:10}){
-        ForEach(this.affairList,(item:AffairInfo,index:number)=>{
-          if(this.currentState===item.status){
-            this.affairItemCard(item,index)
-          }
-        })
+      Scroll(){
+        Column({space:10}){
+          ForEach(this.affairList,(item:AffairInfo,index:number)=>{
+            if(this.currentState===item.status){
+              this.affairItemCard(item,index)
+            }
+          })
+        }
       }
+      .height(300)
       .margin({top:8})
 
 
@@ -137,11 +140,13 @@ export struct House{
     .borderRadius(10)
     .backgroundColor($r("app.color.workSpaceComp_background"))
   }
+
+
   //事务列表单项item
   @Builder
   affairItemCard(item:AffairInfo,index:number){
     Column({space:8}){
-      Text(item.type)
+      Text(item.applyReason)
         .width("100%")
         .fontSize($r("app.float.affairItemCard_title"))
         .fontWeight(FontWeight.Bold)
@@ -158,8 +163,8 @@ export struct House{
     .backgroundColor($r("app.color.affairItemCard_background"))
     .borderRadius(10)
     .onClick(()=>{
-      //TODO:点击组件跳转到事务处理页面
-
+      //点击组件跳转到事务处理页面
+      router.pushUrl({url:"pages/Approval/Approval"})
     })
   }
 
@@ -230,6 +235,7 @@ export struct House{
           //TODO:搜索回调
         }
       })
+        .backgroundColor($r("app.color.page_nav_background_white"))
 
      Scroll(){
        Column({space:10}){
@@ -266,7 +272,7 @@ export struct House{
                    switch (item.text){
                      case "我的工作" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "消息提醒" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "我的审批" :promptAction.showToast({message:item.text});break;//TODO:回调
+                     case "我的审批" :router.pushUrl({url:"pages/Approval/Approval"});break;//TODO:回调
                      case "我的考勤" :router.pushUrl({url:"pages/Attendance/Attendance"});break;//:回调
                      case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
                      case "考勤打卡" :router.pushUrl({url:"pages/ClockIn/ClockIn"});break;//回调

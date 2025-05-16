@@ -1,8 +1,16 @@
-import { TitlePicNav, USER_INFO } from "basic"
-import { TabClass, User, UserModel } from "../../pojo"
+import { TitlePicNav, USER_AFFAIR_NUM, USER_INFO } from "basic"
+import { ApprovalNumInfo, ApprovalNumModel, TabClass, User, UserModel } from "../../pojo"
 
 @Component
 export struct Mine{
+  //状态：单向取出当前用户事务处理数据
+  @StorageProp(USER_AFFAIR_NUM)
+  approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
+    currentAllAffairNum:0,
+    currentWaitingNum:0,
+    currentFinishNum:0,
+    currentRejectNum:0
+  } as ApprovalNumInfo)
 
   //状态：从AppStorage中同步用户信息数据
   @StorageProp(USER_INFO)
@@ -118,11 +126,11 @@ export struct Mine{
               .width(50)
               .aspectRatio(1)
             Column({space:10}){
-              Text("15条")
+              Text(this.approvalNumData.currentAllAffairNum+"")
                 .width("100%")
                 .fontColor($r("app.color.Mine_card_title"))
                 .fontSize($r("app.float.Mine_card_title"))
-              Text("事务待办")
+              Text("事务完成")
                 .width("100%")
                 .fontColor($r("app.color.Mine_card_text"))
                 .fontSize($r("app.float.Mine_card_text"))

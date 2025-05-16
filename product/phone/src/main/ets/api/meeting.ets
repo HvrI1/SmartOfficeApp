@@ -15,3 +15,8 @@ export const subscribeMeetingApi = async (subscribeMeetingDDD:SubscribeMeetingDD
   const res:Result<SubscribeMeetingDDDInfo> =  await RequestAxios.post<Result<SubscribeMeetingDDDInfo>>(`/meeting/subscribeMeeting`,subscribeMeetingDDD)
   return res
 }
+
+export const selectMeetingRoomInfoApi = async  (roomId:number)=>{
+  const res:Result<MeetingRoomInfo> =  await RequestAxios.get<Result<MeetingRoomInfo>>(`/meeting/getMeetingRoomByRoomId?roomId=${roomId}`)
+  return res
+}

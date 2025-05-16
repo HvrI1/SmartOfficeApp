@@ -355,9 +355,17 @@ export struct CalendarAttendance{
 
 
       Column({space:15}){
-        ForEach(this.currentAttendance,(item:AttendanceInfo,index:number)=>{
-          this.attendanceItem(item,index)
-        })
+        if(this.currentAttendance.length){
+          ForEach(this.currentAttendance,(item:AttendanceInfo,index:number)=>{
+            this.attendanceItem(item,index)
+          })
+        }else {
+          Text("------当前暂无打卡数据数据------")
+            .width("100%")
+            .textAlign(TextAlign.Center)
+            .margin({top:50})
+            .fontColor($r("app.color.Calendar_text_gray"))
+        }
       }
       .width("100%")
       .padding(10)

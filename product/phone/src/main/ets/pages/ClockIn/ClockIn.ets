@@ -25,8 +25,13 @@ struct ClockIn {
 
   //回调方法：子组件中的回调方法，插入打卡信息
   clockIn = async (location:string)=>{
+
     if(location === ""){
       promptAction.showToast({message:"必须先获取位置才可进行打卡"})
+      return
+    }
+    if(this.afternoonAttendanceInfo.attendanceDate!=undefined){
+      promptAction.showToast({message:"下班打卡已完成，不可继续打卡"})
       return
     }
     //组合信息,在请求未成功返回结果时，不使用上面的对象
@@ -76,15 +81,6 @@ struct ClockIn {
 
     }else {
       promptAction.showToast({message:res.message})
-    }
-  }
-  //方法：是否可以点击打卡
-  isCanClick(){
-    if(this.afternoonAttendanceInfo.attendanceDate==undefined){
-      return true
-    }else {
-      promptAction.showToast({message:"下班打卡已完成，不可继续打卡"})
-      return false
     }
   }
 
@@ -245,7 +241,6 @@ struct ClockIn {
         isChange:this.isChange,
         clickCallBack:this.clockIn
       })
-        .enabled(this.isCanClick())
         .margin({top:15})
 
 

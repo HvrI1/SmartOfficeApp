@@ -28,3 +28,42 @@ export class AffairModel implements AffairInfo{
 
 
 }
+
+export interface ApprovalNumInfo{
+  //状态：当前事务总数
+  currentAllAffairNum:number
+  //状态：当前待办的数量
+  currentWaitingNum:number
+  //状态：当前已审核的数量
+  currentFinishNum:number
+  //状态：当前已拒绝的数量
+  currentRejectNum:number
+}
+
+
+
+export  class ApprovalNumModel implements ApprovalNumInfo{
+  //状态：当前事务总数
+  currentAllAffairNum:number
+  //状态：当前待办的数量
+  currentWaitingNum:number
+  //状态：当前已审核的数量
+  currentFinishNum:number
+  //状态：当前已拒绝的数量
+  currentRejectNum:number
+
+  constructor(model:ApprovalNumInfo) {
+    this.currentAllAffairNum = model.currentAllAffairNum;
+    this.currentWaitingNum = model.currentWaitingNum;
+    this.currentFinishNum = model.currentFinishNum;
+    this.currentRejectNum = model.currentRejectNum;
+  }
+
+
+}
+
+export interface  ApprovalDto{
+  meetingSubscribeId:number;
+  affairId:number;
+  status:number
+}

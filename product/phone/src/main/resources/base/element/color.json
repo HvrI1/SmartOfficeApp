@@ -299,6 +299,18 @@
     {
       "name": "button_background_gray",
       "value": "#FFEFEEEE"
+    },
+    {
+      "name": "Approval_card_background_white",
+      "value": "#ffffff"
+    },
+    {
+      "name": "button_font_red",
+      "value": "#ff0000"
+    },
+    {
+      "name": "button_background_red",
+      "value": "#72FA8686"
     }
   ]
 }

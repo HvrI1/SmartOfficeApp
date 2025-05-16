@@ -1,19 +1,25 @@
 export interface MeetingSubscribeInfo{
+  id:number;
   startTime:string;
   endTime:string;
   status:string;
+  roomId:number;
+  affairId:number;
   meetingTheme:string;
-  participants:string;
+  participants:number;
   department:string;
   meetingType?:string;
   createTime:string;
 }
 export class MeetingSubscribeModel implements MeetingSubscribeInfo{
+  id:number;
   startTime: string;
   endTime: string;
   status:string;
+  roomId:number;
+  affairId:number;
   meetingTheme: string;
-  participants: string;
+  participants: number;
   department: string;
   meetingType: string | undefined;
   createTime: string;
@@ -27,6 +33,9 @@ export class MeetingSubscribeModel implements MeetingSubscribeInfo{
     this.meetingType = model.meetingType;
     this.createTime = model.createTime;
     this.status = model.status;
+    this.roomId = model.roomId;
+    this.affairId = model.affairId;
+    this.id = model.id;
   }
 
 

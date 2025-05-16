@@ -145,7 +145,7 @@ export struct MeetingSubscribeDiaLog{
           .maxLength(3) // 限制最大输入位数
           .onChange((value: string) => {
             // 实时过滤非数字字符
-            this.subscribeMeetingDDDModel.meetingSubscribe.participants = value.replace(/[^0-9]/g, '');
+            this.subscribeMeetingDDDModel.meetingSubscribe.participants = parseInt(value)
           })
       }
       .width("100%")
@@ -155,20 +155,20 @@ export struct MeetingSubscribeDiaLog{
         .width("25%")
         Select([
           { value: "教研部" },
-          { value: "教务处" },      // 教学管理核心部门
-          { value: "学生工作处" },   // 学生事务管理
-          { value: "招生就业处" },   // 招生与就业指导
-          { value: "财务处" },      // 资金管理
-          { value: "后勤保障处" },  // 校园后勤服务
-          { value: "国际交流处" },   // 国际合作事务
-          { value: "科研处" },      // 科研项目管理
-          { value: "图书馆" },      // 文献资源中心
-          { value: "保卫处" },      // 校园安全管理
-          { value: "团委" },        // 学生团组织
-          { value: "研究生院" },    // 研究生培养
-          { value: "继续教育学院" },// 成人教育部门
-          { value: "体育教学部" },  // 体育课程管理
-          { value: "网络信息中心" }  // 信息化建设
+          { value: "教务处" },
+          { value: "学生工作处" },
+          { value: "招生就业处" },
+          { value: "财务处" },
+          { value: "后勤保障处" },
+          { value: "国际交流处" },
+          { value: "科研处" },
+          { value: "图书馆" },
+          { value: "保卫处" },
+          { value: "团委" },
+          { value: "研究生院" },
+          { value: "继续教育学院" },
+          { value: "体育教学部" },
+          { value: "网络信息中心" }
         ])
           .value("请选择")
           .onSelect((index:number,value:string)=>{

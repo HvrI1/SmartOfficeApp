@@ -1,7 +1,9 @@
-import { TitleNav, USER_INFO, WorkCardNormal } from "basic"
-import { CarSubscribeInfo, MeetingSubscribeInfo,
+import { TitleNav, USER_AFFAIR_NUM, USER_INFO, WorkCardNormal } from "basic"
+import { ApprovalNumInfo,
+  ApprovalNumModel,
+  CarSubscribeInfo, MeetingSubscribeInfo,
   User, UserModel, WorkCardClass } from "../../pojo"
-import { promptAction } from "@kit.ArkUI"
+import { promptAction, router } from "@kit.ArkUI"
 import { getSubscribeApi } from "../../api"
 
 @Component
@@ -11,6 +13,14 @@ export struct Work{
   @StorageProp(USER_INFO)
   userInfo:User= new UserModel({} as User)
 
+  //状态：单向取出当前用户事务处理数据
+  @StorageProp(USER_AFFAIR_NUM)
+  approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
+    currentAllAffairNum:0,
+    currentWaitingNum:0,
+    currentFinishNum:0,
+    currentRejectNum:0
+  } as ApprovalNumInfo)
 
   //异步加载：所以要是状态变量，拿到数据再渲染
   //状态：当前日程会议的数据
@@ -135,17 +145,20 @@ export struct Work{
       .width("100%")
 
       //数据展示区域
-      Column({space:10}){
-        if(this.currentType){
-          ForEach(this.meetingSubscribeList,(item:MeetingSubscribeInfo,index:number)=>{
-            this.subscribeItemCard(index,item,undefined)
-          })
-        }else {
-          ForEach(this.carSubscribeList,(item:CarSubscribeInfo,index:number)=>{
-            this.subscribeItemCard(index,undefined,item)
-          })
+      Scroll(){
+        Column({space:10}){
+          if(this.currentType){
+            ForEach(this.meetingSubscribeList,(item:MeetingSubscribeInfo,index:number)=>{
+              this.subscribeItemCard(index,item,undefined)
+            })
+          }else {
+            ForEach(this.carSubscribeList,(item:CarSubscribeInfo,index:number)=>{
+              this.subscribeItemCard(index,undefined,item)
+            })
+          }
         }
       }
+      .height(300)
       .margin({top:8})
     }
     .width("100%")
@@ -353,7 +366,7 @@ export struct Work{
               Text("待我审批")
                 .width("100%")
                 .fontSize($r("app.float.work_page_card_text_big"))
-              Text("15")
+              Text(this.approvalNumData.currentWaitingNum+"")
                 .width("100%")
                 .fontSize($r("app.float.work_page_card_num"))
                 .fontWeight(FontWeight.Bold)
@@ -370,13 +383,17 @@ export struct Work{
           .layoutWeight(1)
           .linearGradient({angle:225,colors:[["#fffdbbbb",0],["#fefbfb",1]]})
           .borderRadius(10)
+          .onClick(()=>{
+            //点击组件跳转到事务处理页面
+            router.pushUrl({url:"pages/Approval/Approval"})
+          })
           //我完成的
           Row(){
             Column(){
               Text("我完成的")
                 .width("100%")
                 .fontSize($r("app.float.work_page_card_text_big"))
-              Text("2")
+              Text(this.approvalNumData.currentFinishNum+"")
                 .width("100%")
                 .fontSize($r("app.float.work_page_card_num"))
                 .fontWeight(FontWeight.Bold)
@@ -393,6 +410,10 @@ export struct Work{
           .layoutWeight(1)
           .linearGradient({angle:225,colors:[["#ffa3c1fd",0],["#fefbfb",1]]})
           .borderRadius(10)
+          .onClick(()=>{
+            //点击组件跳转到事务处理页面
+            router.pushUrl({url:"pages/Approval/Approval"})
+          })
         }
         .width("90%")
         .height(100)

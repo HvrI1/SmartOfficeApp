@@ -128,6 +128,7 @@ export struct MeetingSubscribeList{
           }else {
             promptAction.showToast({message:res.message})
           }
+          this.controller?.close()
           this.layer.close()
           // this.controller?.close()
         }
