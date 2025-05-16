@@ -51,14 +51,14 @@ export struct TitlePicNav{
       if(this.isShowIcon){
         SymbolGlyph($r("sys.symbol.chevron_right"))
           .fontSize($r("app.float.nav_glyph_little"))
-          .onClick(()=>{
-            this.clickCallBack()
-          })
       }
     }
     .width("100%")
     .height(40)
     .padding(10)
+    .onClick(()=>{
+      this.clickCallBack()
+    })
 
   }
 }

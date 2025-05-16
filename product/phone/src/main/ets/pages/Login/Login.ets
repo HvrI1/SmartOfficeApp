@@ -144,7 +144,7 @@ struct Login {
           //密码输入行
           Row({space:5}){
             //icon
-            SymbolGlyph($r("sys.symbol.person"))
+            SymbolGlyph($r("sys.symbol.lock"))
               .fontSize($r("app.float.textinput_icon"))
               .margin({left:20})
               .fontColor([$r("app.color.textinput_placeholder_font")])
@@ -163,7 +163,7 @@ struct Login {
           .borderRadius(10)
           .backgroundColor($r("app.color.textinput_row_background"))
         }
-        //TODO:实现验证码
+
 
         //登录按钮
         Button("登 录")
@@ -186,11 +186,11 @@ struct Login {
             .onClick(()=>{
               //TODO:忘记密码
             })
-          Text("其他登录方式")
+          Text("注册")
             .fontSize($r("app.float.other_op_text"))
             .fontColor($r("app.color.other_op_text_font"))
             .onClick(()=>{
-              //TODO:其他登录方式
+              router.pushUrl({url:"pages/Register/Register"})
             })
         }
         .width("90%")

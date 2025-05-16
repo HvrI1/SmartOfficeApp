@@ -1,5 +1,8 @@
 {
   "module": {
+    "requestPermissions": [
+      {"name": "ohos.permission.INTERNET"}
+    ],
     "name": "basic",
     "type": "shared",
     "description": "$string:shared_desc",

@@ -65,5 +65,14 @@ export interface UserLoginDto{
   verify?:string
 }
 
+//用户注册DTO
+export interface UserRegisterDto{
+  username:string
+  password:string
+  phone:string
+  profilePhoto:string
+  sex:number
+  nick:string
+}
 
 

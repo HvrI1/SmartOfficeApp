@@ -236,6 +236,7 @@ export struct House{
         }
       })
         .backgroundColor($r("app.color.page_nav_background_white"))
+        .margin({bottom:5})
 
      Scroll(){
        Column({space:10}){
@@ -248,11 +249,11 @@ export struct House{
                bgColor:item.bgColor,
                clickCallBack:()=>{
                  if(item.title==="我要查"){
-                   //TODO:我要查回调
+                   //我要查回调
                  }else if(item.title==="我要办"){
-                   //TODO:我要办回调
+                   //我要办回调
                  }else if(item.title==="我要看"){}
-                 //TODO:我要看回调
+                 //我要看回调
                }
              })
            })

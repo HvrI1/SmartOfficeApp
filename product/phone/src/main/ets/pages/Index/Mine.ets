@@ -1,5 +1,7 @@
 import { TitlePicNav, USER_AFFAIR_NUM, USER_INFO } from "basic"
 import { ApprovalNumInfo, ApprovalNumModel, TabClass, User, UserModel } from "../../pojo"
+import { promptAction, router } from "@kit.ArkUI"
+import { UserSettingClass } from "../../util/preferences"
 
 @Component
 export struct Mine{
@@ -82,6 +84,19 @@ export struct Mine{
     }
   }
 
+  //方法：用户退出
+  async  userQuit(){
+    //清空token和用户信息
+    AppStorage.clear()
+    //清空首选项
+    await new UserSettingClass(getContext()).setUserToken("")
+    await new UserSettingClass(getContext()).setUserInfo({} as User)
+    //清空路由堆栈
+    router.clear()
+    //跳转
+    router.replaceUrl({url:"pages/Login/Login"})
+  }
+
 
   build() {
     Column(){
@@ -144,7 +159,7 @@ export struct Mine{
           .borderRadius(10)
           .padding(15)
           .onClick(()=>{
-            //TODO:事务待办回调
+            //事务待办回调
           })
           Row({space:10}){
             Image($r("[basic].media.message_icon"))
@@ -183,7 +198,19 @@ export struct Mine{
               title:item.title,
               isShowIcon:true,
               icon:item.icon as Resource,
-              iconColor:item.color
+              iconColor:item.color,
+              clickCallBack:()=>{
+                switch (item.title){
+                  case "我的申请":promptAction.showToast({message:"我的申请"});break;
+                  case "我的信息":promptAction.showToast({message:"我的信息"});break;
+                  case "我的关注":promptAction.showToast({message:"我的关注"});break;
+                  case "我的工资":promptAction.showToast({message:"我的工资"});break;
+                  case "我的课表":promptAction.showToast({message:"我的课表"});break;
+                  case "系统设置":promptAction.showToast({message:"系统设置"});break;
+                  case "退出登录":this.userQuit();break;
+                }
+
+              }
             })
             if(!(index === this.settingList.length-1)){
               Divider()
@@ -194,8 +221,6 @@ export struct Mine{
         .padding(10)
         .backgroundColor($r("app.color.mine_card_background"))
         .borderRadius(10)
-
-
 
 
       }

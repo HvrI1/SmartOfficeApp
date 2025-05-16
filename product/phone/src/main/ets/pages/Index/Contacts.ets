@@ -25,7 +25,7 @@ export struct Contacts{
         .width("90%")
         .height(30)
         .onSubmit((value:string)=>{
-          //TODO:搜索回调
+          //搜索回调
         })
       //好友卡片区域
       Column({space:10}){
@@ -41,7 +41,7 @@ export struct Contacts{
             .fontSize($r("app.float.Contacts_card_glyph"))
             .fontWeight(FontWeight.Bold)
             .onClick(()=>{
-              //TODO:新的好友回调
+              //新的好友回调
             })
         }
         .width("100%")
@@ -75,7 +75,7 @@ export struct Contacts{
             .fontSize($r("app.float.Contacts_card_glyph"))
             .fontWeight(FontWeight.Bold)
             .onClick(()=>{
-              //TODO:我的群组回调
+              //我的群组回调
             })
         }
         .width("100%")
@@ -98,7 +98,7 @@ export struct Contacts{
               .aspectRatio(1)
               .borderRadius(50)
             Column({space:5}){
-              Text("荆楚理工学院")
+              Text("成功学院")
                 .fontSize($r("app.float.title_text"))
                 .fontWeight(FontWeight.Bold)
                 .width("100%")
