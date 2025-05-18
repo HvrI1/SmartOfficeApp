@@ -1,4 +1,4 @@
-import { Result, USER_INFO } from 'basic'
+import { CommonConstants, Result } from 'basic'
 import { AdvertInfo, AdvertModel, User, UserModel } from '../../pojo'
 import { promptAction, router } from '@kit.ArkUI'
 import { getAdvertByPosition } from '../../api'
@@ -33,7 +33,7 @@ struct Advert{
 
   //判断是否有用户信息
   getUserInfo(){
-    const userInfo= AppStorage.get(USER_INFO) as User
+    const userInfo= AppStorage.get(CommonConstants.APP_STORAGE_USER) as User
     if(userInfo){
       return true
     }else {

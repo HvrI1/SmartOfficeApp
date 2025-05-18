@@ -1,5 +1,5 @@
 import dayjs from "@hview/dayjs"
-import { formatDate, USER_INFO } from "basic"
+import { CommonConstants, formatDate } from "basic"
 import { queryUserAllAttendanceInfoApi } from "../../api"
 import { User } from "../../pojo"
 import { AttendanceInfo } from "../../pojo"
@@ -21,7 +21,7 @@ export struct CalendarAttendance{
   @Prop currentDate:string
 
   //当前用户的信息
-  @StorageProp(USER_INFO)
+  @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User = {} as User
 
   //状态：当前用户的所有打卡记录

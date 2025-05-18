@@ -1,4 +1,4 @@
-import { USER_INFO } from "basic"
+import { CommonConstants, ListDataSource } from "basic"
 import { queryAllMeetingSubscribeInfoApi } from "../../api"
 import { MeetingSubscribeInfo, User } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
@@ -6,12 +6,17 @@ import { promptAction } from "@kit.ArkUI"
 @Component
 export struct MeetingFinishList{
   //状态：从AppStorage获取用户信息
-  @StorageProp(USER_INFO)
+  @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User={} as User
 
-  //状态：显示会议室预约事务列表的数据源
-  @State meetingSubscribeList:MeetingSubscribeInfo[] = []
+  lazyDataSource:ListDataSource = new ListDataSource()
 
+  //状态：显示会议室预约事务列表的数据源
+  @State @Watch("updateDataSource") meetingSubscribeList:MeetingSubscribeInfo[] = []
+  //当原始数据发生
+  updateDataSource(){
+    this.lazyDataSource.reloadData(this.meetingSubscribeList)
+  }
   //状态：双向同步refresh组件的状态
   @State refreshing:boolean = false
 
@@ -145,7 +150,7 @@ export struct MeetingFinishList{
   build() {
     Refresh({refreshing:$$this.refreshing,builder: this.getRefreshDisplay}){
       List({space:5}){
-        ForEach(this.meetingSubscribeList,(item:MeetingSubscribeInfo,index:number)=>{
+        LazyForEach(this.lazyDataSource,(item:MeetingSubscribeInfo,index:number)=>{
           ListItem(){
             //会议室item单项
             this.MeetingSubscribe(item,index)

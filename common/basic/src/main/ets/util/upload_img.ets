@@ -1,8 +1,7 @@
 import { request } from "@kit.BasicServicesKit"
 import { fileIo } from "@kit.CoreFileKit"
 import { util } from "@kit.ArkTS"
-import { RequestInfo, TOKEN_KEY } from "../constants"
-import { Result } from "../../../../Index"
+import { CommonConstants, Result } from "../../../../Index"
 
 
 export const uploadFile = async (imgFile: string): Promise<string> => {
@@ -38,12 +37,12 @@ const uploadImage = (context:Context, file:request.File)=>{
 
       //设置：文件上传操作的请求配置对象
       const config:request.UploadConfig = {
-        url: RequestInfo.BASE_URL+"/files/imageUpload",
+        url: CommonConstants.REMOTE_BASE_URL+"/files/imageUpload",
         method: 'POST',
         files:[file],       //提交的文件列表
         data: [],       //附加数据：没有
         header: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data'
         }
       }
 
@@ -53,7 +52,6 @@ const uploadImage = (context:Context, file:request.File)=>{
       //为任务添加状态的监听
       //每张图片上传完毕后执行，结果在header中
       task.on('headerReceive', (header)=>{
-
         //是否有完成后的回发头部信息
         if(header['body']){
           //提取结果，转响应格式的字符串
@@ -61,7 +59,6 @@ const uploadImage = (context:Context, file:request.File)=>{
           if(res.code===200){
             //将data中的网络地址放入数组
             serverImage=res.data as string
-            console.log(serverImage)
           }else {
             throw Error(res.message)
           }
@@ -83,8 +80,5 @@ const uploadImage = (context:Context, file:request.File)=>{
       AlertDialog.show({message: '上传失败！'+JSON.stringify(err)})
       reject(new Error('上传失败！'))
     }
-    
-    
-    
   })
 }

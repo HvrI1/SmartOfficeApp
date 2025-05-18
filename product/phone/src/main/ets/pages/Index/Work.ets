@@ -1,4 +1,4 @@
-import { TitleNav, USER_AFFAIR_NUM, USER_INFO, WorkCardNormal } from "basic"
+import { CommonConstants, ListDataSource, TitleNav,  WorkCardNormal } from "basic"
 import { ApprovalNumInfo,
   ApprovalNumModel,
   CarSubscribeInfo, MeetingSubscribeInfo,
@@ -10,11 +10,11 @@ import { getSubscribeApi } from "../../api"
 export struct Work{
 
   //状态：从AppStorage中同步用户信息数据
-  @StorageProp(USER_INFO)
+  @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User= new UserModel({} as User)
 
   //状态：单向取出当前用户事务处理数据
-  @StorageProp(USER_AFFAIR_NUM)
+  @StorageProp(CommonConstants.APP_STORAGE_USER_AFFAIR_NUM)
   approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
     currentAllAffairNum:0,
     currentWaitingNum:0,
@@ -22,15 +22,33 @@ export struct Work{
     currentRejectNum:0
   } as ApprovalNumInfo)
 
+  //属性：操作lazyForeach数据源的对象ListDataSource
+  lazyMeetingDataSource:ListDataSource = new ListDataSource()
+
+  lazyCarDataSource:ListDataSource = new ListDataSource()
+
   //异步加载：所以要是状态变量，拿到数据再渲染
   //状态：当前日程会议的数据
-  @State meetingSubscribeList:MeetingSubscribeInfo[] = []
+  @State  @Watch("updateMeetingDataSource") meetingSubscribeList:MeetingSubscribeInfo[] = []
   //状态：当前日程车辆预约的数据
-  @State carSubscribeList:CarSubscribeInfo[] =[]
+  @State  @Watch("updateCarDataSource") carSubscribeList:CarSubscribeInfo[] =[]
 
   @State meetingSubscribeNum:number = 0 //会议数量
   @State carSubscribeNum:number = 0 //车辆预约数量
   @State currentType:boolean = true; //true:会议 false：车辆预约
+
+
+  //当原始数据发生
+  updateMeetingDataSource(){
+    if(this.currentType) {
+      this.lazyMeetingDataSource.reloadData(this.meetingSubscribeList)
+    }
+  }
+  updateCarDataSource(){
+    if(!this.currentType) {
+      this.lazyCarDataSource.reloadData(this.carSubscribeList)
+    }
+  }
 
   //属性：卡片WorkCardNormal的数据
   WorkCardOfficeList:WorkCardClass[] = [
@@ -148,11 +166,11 @@ export struct Work{
       Scroll(){
         Column({space:10}){
           if(this.currentType){
-            ForEach(this.meetingSubscribeList,(item:MeetingSubscribeInfo,index:number)=>{
+            LazyForEach(this.lazyMeetingDataSource,(item:MeetingSubscribeInfo,index:number)=>{
               this.subscribeItemCard(index,item,undefined)
             })
           }else {
-            ForEach(this.carSubscribeList,(item:CarSubscribeInfo,index:number)=>{
+            LazyForEach(this.lazyCarDataSource,(item:CarSubscribeInfo,index:number)=>{
               this.subscribeItemCard(index,undefined,item)
             })
           }

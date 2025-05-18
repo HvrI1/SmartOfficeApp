@@ -1,4 +1,8 @@
-import { AffairStateType, BacKNav, HandleCardNormal, NoticeCard, TitleNav, USER_INFO, WorkCardNormal } from "basic"
+import { AffairStateType, BacKNav,
+  CommonConstants,
+  HandleCardNormal,
+  ListDataSource,
+  NoticeCard, TitleNav, WorkCardNormal } from "basic"
 import { AdvertInfo, HandleCardClass, NoticeInfo, User, WorkCardClass,AffairInfo } from "../../pojo"
 import { promptAction, router } from "@kit.ArkUI"
 import { getAffairApi,getUserNoticeApi,getAdvertByPosition } from "../../api/"
@@ -14,6 +18,9 @@ export struct House{
     duration:0
   }]
 
+  //属性：操作lazyForeach数据源的对象ListDataSource
+  lazyDataSource:ListDataSource = new ListDataSource()
+
   //状态：公告数据
   //异步操作，可能加载组件时还没数据。所以要为状态变量，拿到数据后再同步渲染
   @State
@@ -21,11 +28,20 @@ export struct House{
 
   //状态：事务数据
   //异步操作，可能加载组件时还没数据。所以要为状态变量，拿到数据后再同步渲染
+  //@watch,当数据发生变化，执行更新数据的操作
   @State
+  @Watch("updateDataSource")
   affairList:AffairInfo[]=[]
   @State waitWorkNum:number = 0 //待办数量
   @State finishNum:number=0 //已完成数量
   @State currentState:string= "待办"//当前点击的按钮
+
+  //当原始数据发生
+  updateDataSource(){
+    this.lazyDataSource.reloadData(this.affairList)
+    // this.lazyDataSource.
+  }
+
 
   //Scroll控制器
   // scroller:Scroller = new Scroller()
@@ -122,7 +138,7 @@ export struct House{
       .width("100%")
       Scroll(){
         Column({space:10}){
-          ForEach(this.affairList,(item:AffairInfo,index:number)=>{
+          LazyForEach(this.lazyDataSource,(item:AffairInfo,index:number)=>{
             if(this.currentState===item.status){
               this.affairItemCard(item,index)
             }
@@ -173,7 +189,7 @@ export struct House{
   //方法：获取当前用户发布的公告数据
   async getUserNotice(){
     //从AppStorage获取用户id
-    const user:User= AppStorage.get(USER_INFO) as User
+    const user:User= AppStorage.get(CommonConstants.APP_STORAGE_USER) as User
     const  res= await getUserNoticeApi(user.id as number)
     if(res.code===200){
       this.noticeList=res.data as NoticeInfo[]

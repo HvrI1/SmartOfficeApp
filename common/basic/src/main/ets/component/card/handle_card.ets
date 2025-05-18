@@ -1,4 +1,3 @@
-import image from "@ohos.multimedia.image"
 
 @Component
 export struct HandleCardNormal{

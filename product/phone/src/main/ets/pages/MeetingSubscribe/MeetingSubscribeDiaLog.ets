@@ -1,5 +1,5 @@
 import dayjs from "@hview/dayjs"
-import { BacKNav, TitleNav, USER_INFO } from "basic"
+import { BacKNav, CommonConstants, TitleNav } from "basic"
 import {
   AffairInfo,
   AffairModel,
@@ -229,7 +229,7 @@ export struct MeetingSubscribeDiaLog{
           .textAlign(TextAlign.Center)
           .onClick(()=>{
             if(this.isCanClick()){
-              this.subscribeMeetingDDDModel.user = AppStorage.get(USER_INFO) as User
+              this.subscribeMeetingDDDModel.user = AppStorage.get(CommonConstants.APP_STORAGE_USER) as User
               this.subscribeMeetingDDDModel.meetingRoom = this.meetingRoomInfo
               //回调给父组件
               this.clickCallBack(this.subscribeMeetingDDDModel)

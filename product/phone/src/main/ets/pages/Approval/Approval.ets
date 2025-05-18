@@ -1,4 +1,4 @@
-import { BacKNav, ProgressCard, SimpleLoading, USER_AFFAIR_NUM } from 'basic'
+import { BacKNav, CommonConstants, ListDataSource, ProgressCard, SimpleLoading } from 'basic'
 import { IBestCountTo,IBestCountToController } from "@ibestservices/ibest-ui";
 import { execApprovalApi, getAffairApi } from '../../api';
 import { AffairInfo, ApprovalDto, ApprovalNumInfo, ApprovalNumModel } from '../../pojo';
@@ -10,11 +10,18 @@ import { ApprovalDialog } from './ApprovalDialog';
 @Component
 struct Approval {
 
+  //属性：操作lazyForeach数据源的对象ListDataSource
+  lazyDataSource:ListDataSource = new ListDataSource()
   //状态：当前所有事务的数据
-  @State affairWaitingList:AffairInfo[] = []
+  @State @Watch("updateDataSource") affairWaitingList:AffairInfo[] = []
+  //当原始数据发生
+  updateDataSource(){
+    this.lazyDataSource.reloadData(this.affairWaitingList)
+    // this.lazyDataSource.
+  }
 
   //状态：当前事务类型数量展示
-  @StorageLink(USER_AFFAIR_NUM)
+  @StorageLink(CommonConstants.APP_STORAGE_USER_AFFAIR_NUM)
   approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
     currentAllAffairNum:0,
     currentWaitingNum:0,
@@ -256,7 +263,7 @@ struct Approval {
         .borderRadius(10)
       Refresh({refreshing:$$this.refreshing,builder: this.getRefreshDisplay}){
         List(){
-          ForEach(this.affairWaitingList,(item:AffairInfo,index:number)=>{
+          LazyForEach(this.lazyDataSource,(item:AffairInfo,index:number)=>{
             ListItem(){
               this.AffairWaitingItem(item,index)
             }

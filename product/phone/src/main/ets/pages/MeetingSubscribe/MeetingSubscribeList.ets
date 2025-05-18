@@ -2,14 +2,17 @@ import { queryAllMeetingRoomApi, subscribeMeetingApi } from "../../api"
 import { MeetingRoomInfo, SubscribeMeetingDDDInfo } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
 import { MeetingSubscribeDiaLog } from "./MeetingSubscribeDiaLog"
-import { SimpleLoading } from "basic"
+import { ListDataSource, SimpleLoading } from "basic"
 
 @Component
 export struct MeetingSubscribeList{
-
+  lazyDataSource:ListDataSource = new ListDataSource()
   //状态：显示会议室list列表的数据源
-  @State meetingRoomList:MeetingRoomInfo[] = []
-
+  @State  @Watch("updateDataSource") meetingRoomList:MeetingRoomInfo[] = []
+  //当原始数据发生
+  updateDataSource(){
+    this.lazyDataSource.reloadData(this.meetingRoomList)
+  }
   //状态：双向同步refresh组件的状态
   @State refreshing:boolean = false
 
@@ -179,7 +182,7 @@ export struct MeetingSubscribeList{
   build() {
     Refresh({refreshing:$$this.refreshing,builder: this.getRefreshDisplay}){
       List({space:5}){
-        ForEach(this.meetingRoomList,(item:MeetingRoomInfo,index:number)=>{
+        LazyForEach(this.lazyDataSource,(item:MeetingRoomInfo,index:number)=>{
           ListItem(){
             //会议室item单项
             this.MeetingRoomItem(item,index)

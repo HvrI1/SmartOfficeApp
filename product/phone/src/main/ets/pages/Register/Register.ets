@@ -99,7 +99,7 @@ struct Register {
       promptAction.showToast({message:"本地图片地址失效"})
       return
     }
-    //2.调用接口换网络地址
+    //2.调用接口换网 络地址
     try {
       this.layerPhoto.open()
       this.photoUrl =  await uploadFile(localFilePath)

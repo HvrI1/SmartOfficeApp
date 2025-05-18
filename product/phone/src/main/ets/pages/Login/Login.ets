@@ -1,8 +1,8 @@
-import { BacKNav, SimpleLoading, TextInputCheckType, TOKEN_KEY, USER_INFO } from 'basic'
+import { BacKNav, CommonConstants, PreferenceUtil, SimpleLoading} from 'basic'
 import { loginApi, queryUserInfoByUsernameApi } from '../../api/user'
 import { User, UserLoginDto } from '../../pojo'
-import { UserSettingClass } from '../../util/preferences'
 import { promptAction, router } from '@kit.ArkUI'
+import Logger from 'basic/src/main/ets/util/Logger'
 
 @Entry
 @Component
@@ -24,36 +24,45 @@ struct Login {
   }
 
   async login(){
-      //开启动画
-      this.layer.open()
-      //调用接口登录
-      //TODO:这个地方也应该捕获异常，请求不到数据就响应超时
-      let res_token =  await loginApi({username:this.username,password:this.password} as UserLoginDto)
-      if(res_token.code === 200){
-        //异步执行：将token存入或更新至首选项
-        new UserSettingClass(getContext()).setUserToken(res_token.data as string)
-        //将token存入AppStorage
-        AppStorage.setOrCreate(TOKEN_KEY,res_token.data)
-        //调用接口根据用户名查询用户的信息
-        let res_user = await queryUserInfoByUsernameApi(this.username)
-        //存入AppStorage
-        if(res_user.code===200){
-          //异步执行：将用户信息存入或更新至首选项
-          new UserSettingClass(getContext()).setUserInfo(res_user.data as User)
-          //将user存入AppStorage
-          AppStorage.setOrCreate(USER_INFO,res_user.data)
-          //跳转前关闭动画
-          this.layer.close()
-          //跳转首页
-          router.replaceUrl({url:"pages/Index/Index"})
+      try {
+        //开启动画
+        this.layer.open()
+        //调用接口登录
+        //TODO:这个地方也应该捕获异常，请求不到数据就响应超时
+        let res_token =  await loginApi({username:this.username,password:this.password} as UserLoginDto)
+        if(res_token.code === 200){
+          //异步执行：将token存入或更新至首选项
+          const store =  AppStorage.get<PreferenceUtil>(CommonConstants.PREFERENCE_UTIL)
+          store?.putPreference(CommonConstants.PREF_TOKEN,res_token.data as string)
+          //将token存入AppStorage
+          AppStorage.setOrCreate(CommonConstants.APP_STORAGE_TOKEN,res_token.data)
+          //调用接口根据用户名查询用户的信息
+          let res_user = await queryUserInfoByUsernameApi(this.username)
+          //存入AppStorage
+          if(res_user.code===200){
+            //异步执行：将用户信息存入或更新至首选项
+            store?.putPreference(CommonConstants.PREF_USER,res_user.data as User)
+            //将user存入AppStorage
+            AppStorage.setOrCreate(CommonConstants.APP_STORAGE_USER,res_user.data as User)
+            //跳转前关闭动画
+            this.layer.close()
+            //跳转首页
+            router.replaceUrl({url:"pages/Index/Index"})
+          }else {
+            //获取不到用户信息
+            promptAction.showToast({message:res_user+"登录异常，请稍后再试"})
+          }
         }else {
-          //获取不到用户信息
-          promptAction.showToast({message:res_user+"登录异常，请稍后再试"})
+          Logger.error(CommonConstants.LOGGER_PREFIX,`用户登录失败,code:${res_token.code},message:${res_token.message}`)
+          promptAction.showToast({message:res_token.message})
         }
-      }else {
-        promptAction.showToast({message:res_token.message})
+      }catch (error){
+        Logger.error(CommonConstants.LOGGER_PREFIX,`用户登录失败,code:${error.code},message:${error.message}`)
+        promptAction.showToast({message:"登录异常"})
+      }finally {
+        this.layer.close()
       }
-    this.layer.close()
+
   }
 
 
@@ -163,7 +172,6 @@ struct Login {
           .borderRadius(10)
           .backgroundColor($r("app.color.textinput_row_background"))
         }
-
 
         //登录按钮
         Button("登 录")

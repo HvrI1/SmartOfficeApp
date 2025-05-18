@@ -1,12 +1,11 @@
-import { TitlePicNav, USER_AFFAIR_NUM, USER_INFO } from "basic"
+import { CommonConstants, PreferenceUtil, TitlePicNav, } from "basic"
 import { ApprovalNumInfo, ApprovalNumModel, TabClass, User, UserModel } from "../../pojo"
 import { promptAction, router } from "@kit.ArkUI"
-import { UserSettingClass } from "../../util/preferences"
 
 @Component
 export struct Mine{
   //状态：单向取出当前用户事务处理数据
-  @StorageProp(USER_AFFAIR_NUM)
+  @StorageProp(CommonConstants.APP_STORAGE_USER_AFFAIR_NUM)
   approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
     currentAllAffairNum:0,
     currentWaitingNum:0,
@@ -15,7 +14,7 @@ export struct Mine{
   } as ApprovalNumInfo)
 
   //状态：从AppStorage中同步用户信息数据
-  @StorageProp(USER_INFO)
+  @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User= new UserModel({} as User)
 
   //属性：设置数据列表
@@ -86,11 +85,12 @@ export struct Mine{
 
   //方法：用户退出
   async  userQuit(){
-    //清空token和用户信息
+    //清空所有AppStorage
     AppStorage.clear()
     //清空首选项
-    await new UserSettingClass(getContext()).setUserToken("")
-    await new UserSettingClass(getContext()).setUserInfo({} as User)
+    const store= AppStorage.get<PreferenceUtil>(CommonConstants.PREFERENCE_UTIL)
+    store?.putPreference(CommonConstants.PREF_USER,{} as User)
+    store?.putPreference(CommonConstants.PREF_TOKEN,"")
     //清空路由堆栈
     router.clear()
     //跳转

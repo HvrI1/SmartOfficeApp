@@ -2,10 +2,10 @@
 import axios,{InternalAxiosRequestConfig,AxiosError,AxiosResponse,AxiosRequestConfig} from "@ohos/axios"
 
 import { router } from "@kit.ArkUI"
-import { RequestInfo, TOKEN_KEY } from "../constants"
+import { CommonConstants } from "../../../../Index"
 
 const instance = axios.create({
-  baseURL:RequestInfo.BASE_URL,//自动组合到请求路径
+  baseURL:CommonConstants.REMOTE_BASE_URL,//自动组合到请求路径
   readTimeout:10000
 })
 
@@ -15,7 +15,7 @@ instance.interceptors.request.use((config:InternalAxiosRequestConfig)=>{
 
   //config就是配置，我们在头部追加用户令牌
 
-  let token:string =AppStorage.get(TOKEN_KEY) as string
+  let token:string =AppStorage.get(CommonConstants.APP_STORAGE_TOKEN) as string
   config.headers.Authorization = token
   return config
 },(err:AxiosError)=>{
@@ -34,7 +34,7 @@ instance.interceptors.response.use((response:AxiosResponse)=>{
   //是否是401，身份验证不通过
   if(err.response?.status===401){
     //说明令牌无效
-    AppStorage.setOrCreate(TOKEN_KEY,"")//删除应用中的token记录
+    AppStorage.setOrCreate(CommonConstants.APP_STORAGE_TOKEN,"")//删除应用中的token记录
     //跳转登录
     router.replaceUrl({ url: 'pages/Login/Login' })
   }

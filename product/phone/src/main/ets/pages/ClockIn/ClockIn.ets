@@ -1,5 +1,5 @@
 import dayjs from '@hview/dayjs'
-import { BacKNav, USER_INFO } from 'basic'
+import { BacKNav, CommonConstants } from 'basic'
 import { insertAttendanceApi, queryUserAttendanceInfoApi } from '../../api'
 import { AttendanceInfo, AttendanceModel, User, UserModel } from '../../pojo'
 import { ClockInCard } from './ClockInCard'
@@ -11,7 +11,7 @@ import { promptAction } from '@kit.ArkUI'
 struct ClockIn {
 
   //从AppStorage中取出用户信息
-  @StorageProp(USER_INFO)
+  @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User = new UserModel({} as User)
 
   //状态：上午打卡信息，因为位置信息返回要更新位置的ui
