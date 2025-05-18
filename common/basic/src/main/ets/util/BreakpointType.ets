@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-09-21
- * @author LinXun
- * @date 2024/9/21 10:49
- * @version 1.0
  * @description: 断点类型
  */
 import { BreakpointConstants } from '../constants/BreakpointConstants';

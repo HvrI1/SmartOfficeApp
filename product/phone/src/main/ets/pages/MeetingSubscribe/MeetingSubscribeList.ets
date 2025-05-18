@@ -24,7 +24,7 @@ export struct MeetingSubscribeList{
 
   //遮罩动画
   layer:CustomDialogController = new CustomDialogController({
-    builder: SimpleLoading({loadingText: '登录中，请稍后...'}),
+    builder: SimpleLoading({loadingText: '预约中，请稍后...'}),
     customStyle: false,
     autoCancel: false,//非常重要,必须声明false
     alignment: DialogAlignment.Center

@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-09-21
- * @author LinXun
- * @date 2024/9/21 10:57
- * @version 1.0
  * @description: 获取屏幕宽高
  */
 import { display } from '@kit.ArkUI'

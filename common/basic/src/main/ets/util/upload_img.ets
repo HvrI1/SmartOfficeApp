@@ -4,10 +4,11 @@ import { util } from "@kit.ArkTS"
 import { CommonConstants, Result } from "../../../../Index"
 
 
-export const uploadFile = async (imgFile: string): Promise<string> => {
+export const uploadFile = async (localImgPath: string,context:Context): Promise<string> => {
   try {
-    const dest = getContext().cacheDir
-    const source = fileIo.openSync(imgFile, fileIo.OpenMode.READ_ONLY)
+    const dest = context.cacheDir
+    console.log(JSON.stringify(dest))
+    const source = fileIo.openSync(localImgPath, fileIo.OpenMode.READ_ONLY)
     const newName = util.generateRandomUUID() + '.jpg'
     const cachePath = dest + '/' + newName
     fileIo.copyFileSync(source.fd, cachePath)
@@ -18,7 +19,7 @@ export const uploadFile = async (imgFile: string): Promise<string> => {
       uri: 'internal://cache/' + newName,
       type: 'image/jpeg' // 修正MIME类型
     }
-    const remoteUrl = await uploadImage(getContext(), fileParams)
+    const remoteUrl = await uploadImage(context, fileParams)
     return remoteUrl
   } catch (err) {
     console.error('[ERROR] 上传全过程异常:', JSON.stringify(err))
@@ -52,16 +53,20 @@ const uploadImage = (context:Context, file:request.File)=>{
       //为任务添加状态的监听
       //每张图片上传完毕后执行，结果在header中
       task.on('headerReceive', (header)=>{
-        //是否有完成后的回发头部信息
-        if(header['body']){
-          //提取结果，转响应格式的字符串
-          const res = JSON.parse(header['body']) as Result<string>
-          if(res.code===200){
-            //将data中的网络地址放入数组
-            serverImage=res.data as string
-          }else {
-            throw Error(res.message)
+        try {
+          //是否有完成后的回发头部信息
+          if(header['body']){
+            //提取结果，转响应格式的字符串
+            const res = JSON.parse(header['body']) as Result<string>
+            if(res.code===200){
+              //将data中的网络地址放入数组
+              serverImage=res.data as string
+            }else {
+              throw Error(res.message)
+            }
           }
+        } catch (err) {
+          reject(err);  // 解析失败时触发 reject
         }
       })
 

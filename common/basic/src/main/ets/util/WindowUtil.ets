@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-09-21
- * @author LinXun
- * @date 2024/9/21 11:01
- * @version 1.0
  * @description: 屏幕封装
  */
 import { display, window } from '@kit.ArkUI'

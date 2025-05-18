@@ -1,8 +1,12 @@
-import { BacKNav, SimpleLoading, uploadFile } from 'basic'
+import { BacKNav, CommonConstants, SimpleLoading, uploadFile } from 'basic'
 import { User, UserModel, UserRegisterDto } from '../../pojo'
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 import { promptAction, router } from '@kit.ArkUI'
 import { registerApi } from '../../api'
+import { taskpool, util } from '@kit.ArkTS'
+import { UploadAvatarTask } from '../../service'
+import { fileIo } from '@kit.CoreFileKit'
+import Logger from 'basic/src/main/ets/util/Logger'
 
 @Entry
 @Component
@@ -92,25 +96,26 @@ struct Register {
 
   //方法：上传头像
   async execEditPhoto(){
-    //1.从本地取出图片
-    const localFilePath = await this.selectImage()
-    //判断是否为空
-    if(!localFilePath){
-      promptAction.showToast({message:"本地图片地址失效"})
-      return
-    }
-    //2.调用接口换网 络地址
     try {
+      //1.从本地取出图片
+      const localFilePath = await this.selectImage()
       this.layerPhoto.open()
-      this.photoUrl =  await uploadFile(localFilePath)
-      promptAction.showToast({message:"头像上传成功"})
-      this.layerPhoto.close()
+      //2.线程池执行
+      const task = new taskpool.Task(
+        UploadAvatarTask,
+        [localFilePath,getContext()],
+      )
+      const res = await taskpool.execute(task)
+      if(res){
+        this.photoUrl = res as string
+        this.layerPhoto.close()
+        promptAction.showToast({message:"上传成功"})
+      }else {
+        this.layerPhoto.close()
+        promptAction.showToast({message:"上传失败"})
+      }
     }catch (e){
-      promptAction.showToast({message:e})
-      this.layerPhoto.close()
-      return
-    }finally {
-      this.layerPhoto.close()
+      Logger.warn(CommonConstants.LOGGER_PREFIX,`上传异常:${e}`)
     }
 
   }

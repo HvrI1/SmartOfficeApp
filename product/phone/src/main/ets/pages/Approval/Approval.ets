@@ -39,14 +39,14 @@ struct Approval {
 
   //遮罩动画
   layer:CustomDialogController = new CustomDialogController({
-    builder: SimpleLoading({loadingText: '加载中，请稍后...'}),
+    builder: SimpleLoading({loadingText: '审核中，请稍后...'}),
     customStyle: false,
     autoCancel: false,//非常重要,必须声明false
     alignment: DialogAlignment.Center
   })
 
 
-  //组件：会议室预约信息单项
+  //组件：会议室审核信息单项
   @Builder
   AffairWaitingItem(item:AffairInfo,index:number){
     Row(){

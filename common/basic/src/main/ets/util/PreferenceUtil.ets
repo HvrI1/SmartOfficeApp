@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-10-01
- * @author LinXun
- * @date 2024/10/1 14:32
- * @version 1.0
  * @description: 用户首选项
  */
 import { preferences } from '@kit.ArkData'
