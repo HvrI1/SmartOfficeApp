@@ -14,7 +14,6 @@ const instance = axios.create({
 instance.interceptors.request.use((config:InternalAxiosRequestConfig)=>{
 
   //config就是配置，我们在头部追加用户令牌
-
   let token:string =AppStorage.get(CommonConstants.APP_STORAGE_TOKEN) as string
   config.headers.Authorization = token
   return config

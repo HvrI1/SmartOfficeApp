@@ -65,5 +65,6 @@ export  class ApprovalNumModel implements ApprovalNumInfo{
 export interface  ApprovalDto{
   meetingSubscribeId:number;
   affairId:number;
-  status:number
+  affairStatus:number
+  meetingSubscribeStatus:number
 }

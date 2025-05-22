@@ -139,14 +139,15 @@ struct Approval {
     this.controller = new CustomDialogController({
       builder:ApprovalDialog({
         item:item,
-        clickCallBack:async (meetingSubscribeId:number,affairId:number,status:number)=>{
+        clickCallBack:async (meetingSubscribeId:number,affairId:number,affairStatus:number,meetingSubscribeStatus:number)=>{
           //打开动画
           try {
             this.layer.open()
             const res =  await execApprovalApi({
               meetingSubscribeId,
               affairId,
-              status
+              affairStatus,
+              meetingSubscribeStatus
             } as ApprovalDto)
             if(res.code===200){
               promptAction.showToast({message:res.message})

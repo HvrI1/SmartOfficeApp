@@ -79,13 +79,13 @@ export struct MeetingFinishList{
         }
         .width("80%")
 
-        Text("已通过")
+        Text(item.status)
           .width("20%")
           .aspectRatio(1)
           .borderRadius(50)
           .fontSize($r("app.float.MeetingCheckList_finish_state_font"))
-          .backgroundColor($r("app.color.MeetingCheckList_finish_state_background"))
-          .foregroundColor($r("app.color.MeetingCheckList_finish_state_font"))
+          .backgroundColor(item.status==="已通过"?$r("app.color.MeetingCheckList_finish_state_background"):$r("app.color.MeetingCheckList_reject_state_background"))
+          .fontColor($r("app.color.MeetingCheckList_finish_state_font"))
           .textAlign(TextAlign.Center)
       }
       .width("90%")
@@ -135,6 +135,7 @@ export struct MeetingFinishList{
     const res = await queryAllMeetingSubscribeInfoApi(this.userInfo.id)
     if(res.code===200){
       this.meetingSubscribeList = res.data as MeetingSubscribeInfo[]
+      console.log(JSON.stringify(this.meetingSubscribeList))
       this.refreshing = false
     }else {
       promptAction.showToast({message:res.message})
@@ -150,12 +151,22 @@ export struct MeetingFinishList{
   build() {
     Refresh({refreshing:$$this.refreshing,builder: this.getRefreshDisplay}){
       List({space:5}){
-        LazyForEach(this.lazyDataSource,(item:MeetingSubscribeInfo,index:number)=>{
+        if(this.meetingSubscribeList.length===0){
           ListItem(){
-            //会议室item单项
-            this.MeetingSubscribe(item,index)
+            Text("------当前暂无待审核数据数据------")
+              .width("100%")
+              .textAlign(TextAlign.Center)
+              .margin({top:50})
+              .fontColor($r("app.color.Calendar_text_gray"))
           }
-        })
+        }else {
+          LazyForEach(this.lazyDataSource,(item:MeetingSubscribeInfo,index:number)=>{
+            ListItem(){
+              //会议室item单项
+              this.MeetingSubscribe(item,index)
+            }
+          })
+        }
       }
       .width("100%")
       .height("100%")

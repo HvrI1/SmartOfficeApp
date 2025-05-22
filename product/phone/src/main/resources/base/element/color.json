@@ -311,6 +311,10 @@
     {
       "name": "button_background_red",
       "value": "#72FA8686"
+    },
+    {
+      "name": "MeetingCheckList_reject_state_background",
+      "value": "#ff0000"
     }
   ]
 }

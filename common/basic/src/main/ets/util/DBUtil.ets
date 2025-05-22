@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-10-03
- * @author LinXun
- * @date 2024/10/3 11:22
- * @version 1.0
  * @description: 数据库操作类封装
  */
 import { relationalStore, ValuesBucket, ValueType } from '@kit.ArkData'

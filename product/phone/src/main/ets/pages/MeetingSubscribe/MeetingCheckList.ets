@@ -131,12 +131,22 @@ export struct MeetingCheckList{
   build() {
     Refresh({refreshing:$$this.refreshing,builder: this.getRefreshDisplay}){
       List({space:5}){
-        LazyForEach(this.lazyDataSource,(item:AffairInfo,index:number)=>{
-          ListItem(){
-            //会议室item单项
-            this.MeetingAffair(item,index)
-          }
-        })
+        if(this.meetingAffairList.length===0){
+            ListItem(){
+              Text("------当前暂无待审核数据数据------")
+                .width("100%")
+                .textAlign(TextAlign.Center)
+                .margin({top:50})
+                .fontColor($r("app.color.Calendar_text_gray"))
+            }
+        }else {
+          LazyForEach(this.lazyDataSource,(item:AffairInfo,index:number)=>{
+            ListItem(){
+              //会议室item单项
+              this.MeetingAffair(item,index)
+            }
+          })
+        }
       }
       .width("100%")
       .height("100%")

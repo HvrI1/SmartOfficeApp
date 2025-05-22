@@ -19,7 +19,7 @@ export struct ApprovalDialog{
   private controller:CustomDialogController
 
   //回调给父组件
-  clickCallBack=(meetingSubscribeId:number,affairId:number,status:number)=>{}
+  clickCallBack=(meetingSubscribeId:number,affairId:number,affairStatus:number,meetingSubscribeStatus:number)=>{}
 
 
 
@@ -243,7 +243,7 @@ export struct ApprovalDialog{
             .backgroundColor($r("app.color.button_background_red"))
             .textAlign(TextAlign.Center)
             .onClick(()=>{
-              this.clickCallBack(this.meetingSubscribeInfo.id,this.item.id,2)
+              this.clickCallBack(this.meetingSubscribeInfo.id,this.item.id,2,2)
             })
           Text("同 意")
             .layoutWeight(1)
@@ -254,7 +254,7 @@ export struct ApprovalDialog{
             .textAlign(TextAlign.Center)
             .onClick(()=>{
               //回调给父组件
-              this.clickCallBack(this.meetingSubscribeInfo.id,this.item.id,1)
+              this.clickCallBack(this.meetingSubscribeInfo.id,this.item.id,1,1)
             })
         }
         .width("90%")

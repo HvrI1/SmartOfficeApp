@@ -1,8 +1,4 @@
 /**
- * Copyright (C), 2024-10-02
- * @author LinXun
- * @date 2024/10/2 13:58
- * @version 1.0
  * @description: 键值数据库操作类封装
  */
 import { distributedKVStore } from '@kit.ArkData';
