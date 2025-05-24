@@ -1,0 +1,124 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "title_text",
+      "value": "18vp"
+    },
+    {
+      "name": "textinput_icon",
+      "value": "20vp"
+    },
+    {
+      "name": "other_op_text",
+      "value": "12vp"
+    },
+    {
+      "name": "textinput_check",
+      "value": "14"
+    },
+    {
+      "name": "tabs_glyph",
+      "value": "20"
+    },
+    {
+      "name": "tabs_title",
+      "value": "16"
+    },
+    {
+      "name": "workSpaceComp_nav",
+      "value": "16vp"
+    },
+    {
+      "name": "affairItemCard_title",
+      "value": "16vp"
+    },
+    {
+      "name": "affairItemCard_text",
+      "value": "14vp"
+    },
+    {
+      "name": "work_page_user_info_nick",
+      "value": "18vp"
+    },
+    {
+      "name": "work_page_user_info_detail",
+      "value": "14vp"
+    },
+    {
+      "name": "work_page_card_glyph_normal",
+      "value": "30"
+    },
+    {
+      "name": "work_page_card_text_big",
+      "value": "18"
+    },
+    {
+      "name": "work_page_card_num",
+      "value": "22"
+    },
+    {
+      "name": "workSpaceComp_item_text",
+      "value": "14vp"
+    },
+    {
+      "name": "workSpaceComp_item_date",
+      "value": "12vp"
+    },
+    {
+      "name": "workSpaceComp_item_glyph",
+      "value": "22vp"
+    },
+    {
+      "name": "Contacts_card_glyph",
+      "value": "20"
+    },
+    {
+      "name": "title_text_little",
+      "value": "12vp"
+    },
+    {
+      "name": "Mine_card_text",
+      "value": "12vp"
+    },
+    {
+      "name": "Mine_card_title",
+      "value": "16vp"
+    },
+    {
+      "name": "clockin_text_normal",
+      "value": "18vp"
+    },
+    {
+      "name": "clockin_text_little",
+      "value": "14vp"
+    },
+    {
+      "name": "clockin_text_glyph",
+      "value": "23vp"
+    },
+    {
+      "name": "clockin_text_bigger",
+      "value": "20vp"
+    },
+    {
+      "name": "MeetingTabList_text_normal",
+      "value": "16vp"
+    },
+    {
+      "name": "MeetingTabList_text_little",
+      "value": "14vp"
+    },
+    {
+      "name": "MeetingCheckList_check_state_font",
+      "value": "16vp"
+    },
+    {
+      "name": "MeetingCheckList_finish_state_font",
+      "value": "16vp"
+    }
+  ]
+}

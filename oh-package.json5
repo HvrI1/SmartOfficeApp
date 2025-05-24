@@ -4,7 +4,8 @@
   "dependencies": {
     "@ohos/axios": "^2.2.6",
     "@hview/dayjs": "^1.11.11",
-    "@ibestservices/ibest-ui": "^2.1.0"
+    "@ibestservices/ibest-ui": "^2.1.0",
+    "@hadss/hmrouter": "^1.1.0-beta.0"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.21",

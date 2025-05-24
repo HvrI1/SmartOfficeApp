@@ -1,0 +1,30 @@
+{
+  "module": {
+    //请求权限
+    "requestPermissions": [
+      {"name": "ohos.permission.INTERNET"},//网络套接字权限
+      //应用位置能力
+      {"name": "ohos.permission.LOCATION","reason": "$string:location",
+        "usedScene": {
+          "abilities": ["EntryAbility"],
+          "when": "inuse"
+        }
+      },
+      //系统位置能力
+      {"name": "ohos.permission.APPROXIMATELY_LOCATION","reason": "$string:location",
+        "usedScene": {
+          "abilities": ["EntryAbility"],
+          "when": "inuse"
+        }
+      }
+    ],
+    "name": "meeting_subscribe",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "deliveryWithInstall": true
+  }
+}

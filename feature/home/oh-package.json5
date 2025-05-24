@@ -1,0 +1,16 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "packageType": "InterfaceHar",
+  "dependencies": {
+    "basic": "file:../../common/basic",
+    "approval": "file:../approval",
+    "attendance": "file:../attendance",
+    "clock_in": "file:../clock_in",
+    "meeting_subscribe": "file:../meeting_subscribe"
+  }
+}

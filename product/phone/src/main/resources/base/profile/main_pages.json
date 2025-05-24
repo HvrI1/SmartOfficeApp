@@ -1,12 +1,5 @@
 {
   "src": [
-    "pages/Index/Index",
-    "pages/Advert/Advert",
-    "pages/Login/Login",
-    "pages/Attendance/Attendance",
-    "pages/ClockIn/ClockIn",
-    "pages/MeetingSubscribe/MeetingSubscribe",
-    "pages/Approval/Approval",
-    "pages/Register/Register"
+    "pages/Index"
   ]
 }

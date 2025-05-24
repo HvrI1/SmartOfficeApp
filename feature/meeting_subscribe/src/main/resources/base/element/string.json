@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "智慧办公"
+    },
+    {
+      "name": "login_title",
+      "value": "移动办公平台"
+    },
+    {
+      "name": "location",
+      "value": "精确定位"
+    },
+    {
+      "name": "shared_desc",
+      "value": "describe"
+    }
+  ]
+}
