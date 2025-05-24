@@ -1,6 +1,7 @@
 import { HMRouterMgr } from '@hadss/hmrouter';
 import { StartupTask, common } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { CommonConstants } from 'basic';
+import Logger from 'basic/src/main/ets/util/Logger';
 
 @Sendable
 export default class HMRouterInitStartupTask extends StartupTask {
@@ -9,7 +10,6 @@ export default class HMRouterInitStartupTask extends StartupTask {
   }
 
   async init(context: common.AbilityStageContext) {
-    // add task to init HMRouter
     HMRouterMgr.init({
       context: context
     })
@@ -17,7 +17,6 @@ export default class HMRouterInitStartupTask extends StartupTask {
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {
-    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
-      dependence, JSON.stringify(result));
+    Logger.info(CommonConstants.LOGGER_PREFIX,`HMRouterInitStartupTask的回调，dependence:${dependence},result:${result}`)
   }
 }

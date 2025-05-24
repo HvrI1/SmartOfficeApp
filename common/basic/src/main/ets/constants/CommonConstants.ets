@@ -101,7 +101,7 @@ export class CommonConstants {
   /**
    * 设备类型
    */
-  static readonly DEVICE_TYPES: string[] = ["2in1", "tablet"];
+  static readonly DEVICE_TYPES: string[] = ["phone","tablet","2in1"];
 
 
   /**
