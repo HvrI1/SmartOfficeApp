@@ -1,5 +1,0 @@
-export * from "./src/main/ets/api"
-export * from "./src/main/ets/pages/Login/Login"
-export * from "./src/main/ets/pages/Register/Register"
-export * from "./src/main/ets/pojo"
-export * from "./src/main/ets/service"

@@ -6,7 +6,6 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "basic": "file:../../common/basic",
-    "auth": "file:../../feature/auth"
+    "basic": "file:../../common/basic"
   }
 }

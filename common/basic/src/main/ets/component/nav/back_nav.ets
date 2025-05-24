@@ -1,5 +1,4 @@
-import { HMRouterMgr } from "@hadss/hmrouter"
-
+import { router } from "@kit.ArkUI"
 @Component
 export struct BacKNav{
 
@@ -26,7 +25,7 @@ export struct BacKNav{
           SymbolGlyph($r("sys.symbol.chevron_left"))
             .fontSize($r("app.float.nav_glyph"))
             .onClick(()=>{
-              HMRouterMgr.pop()
+              router.back()
             })
         }else {
           Row()

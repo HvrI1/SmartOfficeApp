@@ -1,17 +1,37 @@
 import { AbilityConstant, common,  UIAbility, Want } from '@kit.AbilityKit';
 import { promptAction, window } from '@kit.ArkUI';
 import { CommonConstants, PreferenceUtil}   from 'basic';
-import { queryUserInfoByUsernameApi } from 'auth/src/main/ets/api/index';
-import { User } from 'auth/src/main/ets/pojo/index';
+import { queryUserInfoByUsernameApi } from '../api';
+import { User } from '../pojo';
 import { IBestInit } from "@ibestservices/ibest-ui"
 import { preferences } from '@kit.ArkData';
 import Logger from 'basic/src/main/ets/util/Logger';
 
 export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+
+  }
+
+  onDestroy(): void {
+
+  }
+
   onWindowStageCreate(windowStage: window.WindowStage): void {
     //验证是否自动登录
     //注意这里使用上下文this.context
     checkAuthLogin(windowStage,this.context)
+
+  }
+
+  onWindowStageDestroy(): void {
+
+  }
+
+  onForeground(): void {
+
+  }
+
+  onBackground(): void {
 
   }
 }
@@ -25,7 +45,7 @@ async function checkAuthLogin(windowStage: window.WindowStage,context:common.UIA
     const userLocalInfo = await store?.getPreferenceValue(CommonConstants.PREF_USER) as User
     if(!token || !userLocalInfo){//如果本地token和用户信息有一个为空
       promptAction.showToast({message:"用户信息已过期,请重新登录"})
-      windowStage.loadContent("pages/Index",()=>{
+      windowStage.loadContent("pages/Login/Login",()=>{
         IBestInit(windowStage, context)
       })//跳转至登录
       return
@@ -44,18 +64,18 @@ async function checkAuthLogin(windowStage: window.WindowStage,context:common.UIA
       //跳转首页
       promptAction.showToast({message:"用户已登录"})
       if(userRemoteInfo.isVip === "普通用户"){
-        windowStage.loadContent("pages/Index",()=>{
+        windowStage.loadContent("pages/Advert/Advert",()=>{
           IBestInit(windowStage, context)
         })//跳转至广告
       }else {
-        windowStage.loadContent("pages/Index",()=>{
+        windowStage.loadContent("pages/Index/Index",()=>{
           IBestInit(windowStage, context)
         })//跳转至登录
       }
       return
     }else {//请求不到数据，证明token过期
       promptAction.showToast({message:"用户信息已过期,请重新登录"})
-      windowStage.loadContent("pages/Index",()=>{
+      windowStage.loadContent("pages/Login/Login",()=>{
         IBestInit(windowStage, context)
       })//跳转至广告
       return

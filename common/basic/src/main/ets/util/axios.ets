@@ -1,7 +1,7 @@
 //【第三方axios】
-import { HMRouterMgr } from "@hadss/hmrouter"
 import axios,{InternalAxiosRequestConfig,AxiosError,AxiosResponse,AxiosRequestConfig} from "@ohos/axios"
 
+import { router } from "@kit.ArkUI"
 import { CommonConstants } from "../../../../Index"
 
 const instance = axios.create({
@@ -35,7 +35,7 @@ instance.interceptors.response.use((response:AxiosResponse)=>{
     //说明令牌无效
     AppStorage.setOrCreate(CommonConstants.APP_STORAGE_TOKEN,"")//删除应用中的token记录
     //跳转登录
-    HMRouterMgr.pop({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"LoginComp"})
+    router.replaceUrl({ url: 'pages/Login/Login' })
   }
 
   return Promise.reject(err)
