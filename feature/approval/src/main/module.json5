@@ -1,0 +1,15 @@
+{
+  "module": {
+    "requestPermissions": [
+      {"name": "ohos.permission.INTERNET"}
+    ],
+    "name": "approval",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "deliveryWithInstall": true
+  }
+}
