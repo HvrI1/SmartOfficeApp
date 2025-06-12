@@ -58,6 +58,28 @@ export class DBUtil {
         })
     })
   }
+  public async isTableExist(tableName: string): Promise<boolean> {
+    if (!this.rdbStore) {
+      return false;
+    }
+
+    try {
+      // 查询SQLite系统表检查表是否存在
+      const resultSet = await this.rdbStore.querySql(
+        `SELECT count(*) AS count FROM sqlite_master WHERE type='table' AND name='${tableName}'`
+      );
+
+      if (resultSet.rowCount > 0) {
+        resultSet.goToFirstRow();
+        const count = resultSet.getLong(resultSet.getColumnIndex('count'));
+        return count > 0;
+      }
+      return false;
+    } catch (error) {
+      Logger.error(CommonConstants.RDB_PREFIX, `检查表是否存在失败: ${tableName}`, JSON.stringify(error));
+      return false;
+    }
+  }
   insert(tableName: string, obj: object, columns: ColumnInfo[]): Promise<number> {
     return new Promise((resolve, reject) => {
       // 1.构建新增数据
@@ -83,6 +105,20 @@ export class DBUtil {
         } else {
           Logger.debug(CommonConstants.RDB_PREFIX,'删除成功！删除行数：', rows.toString());
           resolve(rows);
+        }
+      })
+    });
+  }
+
+  deleteTablet(tableName: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.rdbStore?.executeSql(`DROP TABLE ${tableName}`, (err, res) => {
+        if (err) {
+          Logger.warn(CommonConstants.RDB_PREFIX,'删除失败!,', JSON.stringify(err));
+          reject(false);
+        } else {
+          Logger.debug(CommonConstants.RDB_PREFIX,'删除成功！删除行数：', JSON.stringify(res));
+          resolve(true);
         }
       })
     });

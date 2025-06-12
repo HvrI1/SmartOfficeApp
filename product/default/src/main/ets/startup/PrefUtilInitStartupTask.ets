@@ -1,10 +1,9 @@
 import { StartupTask, common } from '@kit.AbilityKit';
-import { CommonConstants, PreferenceUtil } from 'basic';
-import Logger from 'basic/src/main/ets/util/Logger';
+import { CommonConstants, PreferenceUtil } from 'base';
+import Logger from 'base/src/main/ets/util/Logger';
 
 @Sendable
 export default class PrefUtilInitStartupTask extends StartupTask {
-
 
   constructor() {
     super();
@@ -12,7 +11,8 @@ export default class PrefUtilInitStartupTask extends StartupTask {
 
   async init(context: common.AbilityStageContext) {
     const prefUtil:PreferenceUtil = PreferenceUtil.getInstance() as PreferenceUtil;
-    prefUtil.loadPreference(context);
+    await prefUtil.loadPreference(context);
+    Logger.info(CommonConstants.LOGGER_PREFIX,`prefUtil启动成功`)
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {

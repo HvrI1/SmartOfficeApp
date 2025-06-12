@@ -1,7 +1,8 @@
 import { selectMeetingRoomInfoApi, selectMeetingSubscribeInfoApi } from "../../api"
 import { AffairInfo, MeetingRoomInfo, MeetingRoomModel, MeetingSubscribeInfo, MeetingSubscribeModel } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
-import { FoldNav, TitleNav } from "basic"
+import { FoldNav } from "base"
+
 
 @CustomDialog
 @Component
@@ -175,11 +176,9 @@ export struct ApprovalDialog{
         this.meetingRoomInfo =  meetingRoomRes.data as  MeetingRoomInfo
       }else {
         promptAction.showToast({message:meetingSubscribeRes.message+meetingRoomRes.message})
-
       }
     }catch (e) {
       promptAction.showToast({message:"加载数据失败,稍后再试"})
-
       this.controller.close()
     }
   }

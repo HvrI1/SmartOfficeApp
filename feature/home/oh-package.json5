@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
-    "basic": "file:../../common/basic",
+    "base": "file:../../common/base",
     "approval": "file:../approval",
     "attendance": "file:../attendance",
     "clock_in": "file:../clock_in",

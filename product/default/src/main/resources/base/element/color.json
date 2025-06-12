@@ -315,6 +315,10 @@
     {
       "name": "MeetingCheckList_reject_state_background",
       "value": "#ff0000"
+    },
+    {
+      "name": "item_title_font",
+      "value": "#E6000000"
     }
   ]
 }

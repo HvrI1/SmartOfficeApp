@@ -1,5 +1,5 @@
 import { HMRouter } from '@hadss/hmrouter'
-import { BacKNav } from 'basic'
+import { BacKNav } from 'base'
 import { TabClass } from '../../pojo'
 import { MeetingCheckList } from './MeetingCheckList'
 import { MeetingFinishList } from './MeetingFinishList'

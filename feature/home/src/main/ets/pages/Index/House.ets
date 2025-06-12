@@ -1,8 +1,9 @@
 import { AffairStateType, BacKNav,
+  BreakpointConstants,
   CommonConstants,
   HandleCardNormal,
   ListDataSource,
-  NoticeCard, TitleNav, WorkCardNormal } from "basic"
+  NoticeCard, TitleNav, WorkCardNormal } from "base"
 import { AdvertInfo, HandleCardClass, NoticeInfo, User, WorkCardClass,AffairInfo } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
 import { getAffairApi,getUserNoticeApi,getAdvertByPosition } from "../../api"
@@ -10,6 +11,12 @@ import { HMRouterMgr } from "@hadss/hmrouter"
 
 @Component
 export struct House{
+
+  @StorageProp(CommonConstants.AVOID_RECT_HEIGHT_TOP)
+  avoidTopHeight:number = 0
+
+  @StorageProp(BreakpointConstants.CURRENT_BREAKPOINT)
+  currentBreakPoint:string = "sm"
   //状态：轮播广告数据
   //异步操作，可能加载组件时还没数据。所以要为状态变量，拿到数据后再同步渲染
   @State
@@ -40,12 +47,8 @@ export struct House{
   //当原始数据发生
   updateDataSource(){
     this.lazyDataSource.reloadData(this.affairList)
-    // this.lazyDataSource.
   }
 
-
-  //Scroll控制器
-  // scroller:Scroller = new Scroller()
 
 
   //属性：卡片HandleCardNormal的数据
@@ -194,6 +197,7 @@ export struct House{
     const  res= await getUserNoticeApi(user.id as number)
     if(res.code===200){
       this.noticeList=res.data as NoticeInfo[]
+
     }else {
       promptAction.showToast({message:"用户公告获取失败"})
     }
@@ -234,6 +238,7 @@ export struct House{
 
   //生命周期
   aboutToAppear(): void {
+
     //执行广告数据获取操作
     this.getAdvertList()
     //获取用户公告数据
@@ -252,65 +257,126 @@ export struct House{
           //TODO:搜索回调
         }
       })
-        .backgroundColor($r("app.color.page_nav_background_white"))
+        .backgroundColor($r("app.color.page_background_normal"))
         .margin({bottom:5})
 
      Scroll(){
        Column({space:10}){
-         //卡片区域
-         Row({space:10}){
-           ForEach(this.HandleCardList,(item:HandleCardClass,index:number)=>{
-             HandleCardNormal({
-               title:item.title,
-               text:item.text,
-               bgColor:item.bgColor,
-               clickCallBack:()=>{
-                 if(item.title==="我要查"){
-                   //我要查回调
-                 }else if(item.title==="我要办"){
-                   //我要办回调
-                 }else if(item.title==="我要看"){}
-                 //我要看回调
-               }
-             })
-           })
-         }
-         .width("90%")
-
-
-         //功能区域
-         Grid(){
-           ForEach(this.WorkCardList,(item:WorkCardClass,index:number)=>{
-             GridItem(){
-               WorkCardNormal({
+         if(this.currentBreakPoint==="lg"){
+           //卡片区域
+           Row({space:10}){
+             ForEach(this.HandleCardList,(item:HandleCardClass,index:number)=>{
+               HandleCardNormal({
+                 title:item.title,
                  text:item.text,
-                 icon:item.icon,
-                 iconColor:item.iconColor,
+                 IHeight:150,
+                 bgColor:item.bgColor,
                  clickCallBack:()=>{
-                   switch (item.text){
-                     case "我的工作" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "消息提醒" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "我的审批" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ApprovalComp"});break;//TODO:回调
-                     case "我的考勤" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"AttendanceComp"});break;//:回调
-                     case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
-                     case "考勤打卡" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ClockInComp"});break;//回调
-                     case "会议预约" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"MeetingSubscribeComp"});break;//回调
-                     case "更多功能" :promptAction.showToast({message:item.text});break;//TODO:回调
-                   }
+                   if(item.title==="我要查"){
+                     //我要查回调
+                   }else if(item.title==="我要办"){
+                     //我要办回调
+                   }else if(item.title==="我要看"){}
+                   //我要看回调
+                 }
+               })
+             })
+
+             //功能区域
+             Grid(){
+               ForEach(this.WorkCardList,(item:WorkCardClass,index:number)=>{
+                 GridItem(){
+                   WorkCardNormal({
+                     text:item.text,
+                     icon:item.icon,
+                     iconColor:item.iconColor,
+                     clickCallBack:()=>{
+                       switch (item.text){
+                         case "我的工作" :promptAction.showToast({message:item.text});break;//TODO:回调
+                         case "消息提醒" :promptAction.showToast({message:item.text});break;//TODO:回调
+                         case "我的审批" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ApprovalComp"});break;//TODO:回调
+                         case "我的考勤" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"AttendanceComp"});break;//:回调
+                         case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
+                         case "考勤打卡" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ClockInComp"});break;//回调
+                         case "会议预约" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"MeetingSubscribeComp"});break;//回调
+                         case "更多功能" :promptAction.showToast({message:item.text});break;//TODO:回调
+                       }
+                     }
+                   })
                  }
                })
              }
-           })
+             .layoutWeight(1)
+             .height("100%")
+             .columnsTemplate("1fr 1fr 1fr 1fr")
+             .rowsTemplate("1fr 1fr")
+
+           }
+           .width("90%")
+           .height(170)
+           .borderRadius(10)
+           .backgroundColor($r("app.color.start_window_background"))
+           .padding(10)
          }
-         .width("90%")
-         .height(170)
-         .columnsTemplate("1fr 1fr 1fr 1fr")
-         .columnsGap(20)
-         .rowsTemplate("1fr 1fr")
-         .rowsGap(20)
-         .backgroundColor($r("app.color.start_window_background"))
-         .borderRadius(10)
-         .padding(10)
+
+
+
+
+         if(this.currentBreakPoint !== "lg"){
+           Row({space:10}) {
+             ForEach(this.HandleCardList, (item: HandleCardClass, index: number) => {
+               HandleCardNormal({
+                 title: item.title,
+                 text: item.text,
+                 IHeight: 110,
+                 bgColor: item.bgColor,
+                 clickCallBack: () => {
+                   if (item.title === "我要查") {
+                     //我要查回调
+                   } else if (item.title === "我要办") {
+                     //我要办回调
+                   } else if (item.title === "我要看") {
+                   }
+                   //我要看回调
+                 }
+               })
+             })
+           }
+           .width("90%")
+           //功能区域
+           Grid(){
+             ForEach(this.WorkCardList,(item:WorkCardClass,index:number)=>{
+               GridItem(){
+                 WorkCardNormal({
+                   text:item.text,
+                   icon:item.icon,
+                   iconColor:item.iconColor,
+                   clickCallBack:()=>{
+                     switch (item.text){
+                       case "我的工作" :promptAction.showToast({message:item.text});break;//TODO:回调
+                       case "消息提醒" :promptAction.showToast({message:item.text});break;//TODO:回调
+                       case "我的审批" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ApprovalComp"});break;//TODO:回调
+                       case "我的考勤" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"AttendanceComp"});break;//:回调
+                       case "我的日程" :promptAction.showToast({message:item.text});break;//TODO:回调
+                       case "考勤打卡" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"ClockInComp"});break;//回调
+                       case "会议预约" :HMRouterMgr.push({navigationId:CommonConstants.NAVIGATION_ID_PHONE,pageUrl:"MeetingSubscribeComp"});break;//回调
+                       case "更多功能" :promptAction.showToast({message:item.text});break;//TODO:回调
+                     }
+                   }
+                 })
+               }
+             })
+           }
+           .width("90%")
+           .height(170)
+           .columnsTemplate("1fr 1fr 1fr 1fr")
+           .columnsGap(20)
+           .rowsTemplate("1fr 1fr")
+           .rowsGap(20)
+           .backgroundColor($r("app.color.start_window_background"))
+           .borderRadius(10)
+           .padding(10)
+         }
 
          //轮播swiper区域
          Swiper(){
@@ -323,7 +389,7 @@ export struct House{
            })
          }
          .width("90%")
-         .height(120)
+         .height(this.currentBreakPoint==="lg"?200:120)
          .autoPlay(true)
          .indicator(false)
 
@@ -339,12 +405,11 @@ export struct House{
                text:item.title,
                img:item.imgUrl,
                date:item.createTime,
-               viewNum:item.viewCount
+               viewNum:item.viewCount,
+               IHeight:this.currentBreakPoint==="lg"?130:100
              })
                .width("90%")
-
            })
-
          }
          .width("100%")
 
@@ -354,7 +419,7 @@ export struct House{
            title:"事务待办",
            isShowIcon:false
          })
-
+           .width("90%")
          //事务待办区域
          this.workSpaceComp()
        }
@@ -364,7 +429,7 @@ export struct House{
     }
     .width("100%")
     .height("100%")
-    .padding({bottom:55})
+    .padding({bottom:55,top:this.avoidTopHeight})
     .backgroundColor($r("app.color.page_background_normal"))
   }
 }

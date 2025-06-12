@@ -2,7 +2,7 @@
 import { AffairInfo, User } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
 import { queryUserMeetingSubscribeAffairInfoApi } from "../../api"
-import { CommonConstants, ListDataSource } from "basic"
+import { CommonConstants, ListDataSource } from "base"
 
 @Component
 export struct MeetingCheckList{

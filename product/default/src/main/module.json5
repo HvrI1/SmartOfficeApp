@@ -22,6 +22,7 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        "launchType": "singleton",
         "skills": [
           {
             "entities": [
@@ -44,6 +45,19 @@
           {
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
+          }
+        ]
+      },
+      {
+        "name": "approvalFormAbility",
+        "srcEntry": "./ets/approvalformability/approvalFormAbility.ets",
+        "label": "$string:approvalFormAbility_label",
+        "description": "$string:approvalFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
           }
         ]
       }

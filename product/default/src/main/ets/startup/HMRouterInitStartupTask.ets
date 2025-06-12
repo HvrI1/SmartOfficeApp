@@ -1,7 +1,7 @@
 import { HMRouterMgr } from '@hadss/hmrouter';
 import { StartupTask, common } from '@kit.AbilityKit';
-import { CommonConstants } from 'basic';
-import Logger from 'basic/src/main/ets/util/Logger';
+import { CommonConstants } from 'base';
+import Logger from 'base/src/main/ets/util/Logger';
 
 @Sendable
 export default class HMRouterInitStartupTask extends StartupTask {
@@ -14,6 +14,7 @@ export default class HMRouterInitStartupTask extends StartupTask {
       context: context
     })
     HMRouterMgr.openLog('DEBUG')
+    Logger.info(CommonConstants.LOGGER_PREFIX,`HMRouterMgr启动成功`)
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {

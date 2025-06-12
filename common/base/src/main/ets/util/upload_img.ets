@@ -7,7 +7,6 @@ import { CommonConstants, Result } from "../../../../Index"
 export const uploadFile = async (localImgPath: string,context:Context): Promise<string> => {
   try {
     const dest = context.cacheDir
-    console.log(JSON.stringify(dest))
     const source = fileIo.openSync(localImgPath, fileIo.OpenMode.READ_ONLY)
     const newName = util.generateRandomUUID() + '.jpg'
     const cachePath = dest + '/' + newName

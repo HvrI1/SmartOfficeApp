@@ -1,7 +1,9 @@
-import { FoldNav, TitleNav } from "basic"
+import { CommonConstants, FoldNav, TitleNav } from "base"
 
 @Component
 export struct Contacts{
+  @StorageProp(CommonConstants.AVOID_RECT_HEIGHT_TOP)
+  avoidTopHeight:number = 0
 
   //属性：组织内数据循环
   organizationList:string[]=["校领导","党政办公室","教师发展中心","教师工作部，人事部","学生管理工作部","外国语学院","外国语学院","管理学院","美术设计学院"]
@@ -30,7 +32,7 @@ export struct Contacts{
       //好友卡片区域
       Column({space:10}){
         Row({space:5}){
-          Image($r("[basic].media.new_friend"))
+          Image($r("app.media.new_friend"))
             .width(20)
             .aspectRatio(1)
             .borderRadius(5)
@@ -47,7 +49,7 @@ export struct Contacts{
         .width("100%")
         Divider()
         Row({space:5}){
-          Image($r("[basic].media.my_friend"))
+          Image($r("app.media.my_friend"))
             .width(20)
             .aspectRatio(1)
             .borderRadius(5)
@@ -64,7 +66,7 @@ export struct Contacts{
         .width("100%")
         Divider()
         Row({space:5}){
-          Image($r("[basic].media.my_groups"))
+          Image($r("app.media.my_groups"))
             .width(20)
             .aspectRatio(1)
             .borderRadius(5)
@@ -93,7 +95,7 @@ export struct Contacts{
             .width("100%")
             .fontColor($r("app.color.Contacts_gray"))
           Row({space:15}){
-            Image($r("[basic].media.school_icon"))
+            Image($r("app.media.school_icon"))
               .width(40)
               .aspectRatio(1)
               .borderRadius(50)
@@ -137,6 +139,7 @@ export struct Contacts{
     }
     .width("100%")
     .height("100%")
-    .backgroundColor($r("app.color.Contacts_background"))
+    .padding({bottom:55,top:this.avoidTopHeight})
+    .backgroundColor($r("app.color.page_background_normal"))
   }
 }

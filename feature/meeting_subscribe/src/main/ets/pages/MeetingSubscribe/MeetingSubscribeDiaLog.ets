@@ -1,5 +1,5 @@
 import dayjs from "@hview/dayjs"
-import { BacKNav, CommonConstants, TitleNav } from "basic"
+import { BacKNav, CommonConstants, TitleNav } from "base"
 import {
   AffairInfo,
   AffairModel,

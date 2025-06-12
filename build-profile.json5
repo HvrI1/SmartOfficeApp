@@ -38,18 +38,6 @@
       ]
     },
     {
-      "name": "basic",
-      "srcPath": "./common/basic",
-      "targets": [
-        {
-          "name": "default",
-          "applyToProducts": [
-            "default"
-          ]
-        }
-      ]
-    },
-    {
       "name": "home",
       "srcPath": "./feature/home",
       "targets": [
@@ -120,6 +108,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "base",
+      "srcPath": "./common/base",
     }
   ]
 }

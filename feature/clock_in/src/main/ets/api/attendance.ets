@@ -1,4 +1,4 @@
-import { RequestAxios ,Result} from "basic"
+import { RequestAxios ,Result} from "base"
 import { AttendanceInfo } from "../pojo"
 
 //接口定义：插入一条打卡记录

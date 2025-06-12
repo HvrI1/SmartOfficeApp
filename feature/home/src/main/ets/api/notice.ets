@@ -1,4 +1,4 @@
-import { RequestAxios,Result } from "basic"
+import { RequestAxios,Result } from "base"
 import { NoticeInfo } from "../pojo"
 
 export const getAllNoticeApi =async ()=>{

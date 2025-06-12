@@ -1,5 +1,5 @@
-import { CommonConstants, uploadFile } from "basic"
-import Logger from "basic/src/main/ets/util/Logger"
+import { CommonConstants, uploadFile } from "base"
+import Logger from "base/src/main/ets/util/Logger"
 
 
 @Concurrent

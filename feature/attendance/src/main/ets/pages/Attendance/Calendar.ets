@@ -1,5 +1,5 @@
 import dayjs from "@hview/dayjs"
-import { CommonConstants, formatDate } from "basic"
+import { CommonConstants, formatDate } from "base"
 import { queryUserAllAttendanceInfoApi } from "../../api"
 import { User } from "../../pojo"
 import { AttendanceInfo } from "../../pojo"

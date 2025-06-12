@@ -1,6 +1,6 @@
 import { HMLifecycle, HMLifecycleContext, IHMLifecycle } from "@hadss/hmrouter";
-import { CommonConstants } from "basic";
-import Logger from "basic/src/main/ets/util/Logger";
+import { CommonConstants } from "base";
+import Logger from "base/src/main/ets/util/Logger";
 
 @HMLifecycle({ lifecycleName: 'phoneLifecycle' })
 export class PageDurationLifecycle implements IHMLifecycle {

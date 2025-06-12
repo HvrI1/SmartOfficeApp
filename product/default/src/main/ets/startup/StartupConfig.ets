@@ -1,8 +1,8 @@
 import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from 'basic/src/main/ets/util/Logger';
-import { CommonConstants } from 'basic';
+import Logger from 'base/src/main/ets/util/Logger';
+import { CommonConstants } from 'base';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {

@@ -1,4 +1,4 @@
-import { RequestAxios,Result } from "basic"
+import { RequestAxios,Result } from "base"
 import { MeetingSubscribeInfo, SubscribeDDDInfo } from "../pojo"
 import { AffairInfo, ApprovalDto } from "../pojo/affair"
 

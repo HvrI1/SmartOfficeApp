@@ -1,6 +1,6 @@
 import { HMDefaultGlobalAnimator, HMNavigation } from "@hadss/hmrouter";
 import { AttributeUpdater } from "@kit.ArkUI";
-import { CommonConstants } from "basic";
+import { CommonConstants } from "base";
 
 @Entry
 @Component
@@ -12,12 +12,12 @@ struct Index {
     Column(){
       // 使用HMNavigation容器
       HMNavigation({
-        navigationId: CommonConstants.NAVIGATION_ID_PHONE, homePageUrl: 'LoginComp',
+        navigationId: CommonConstants.NAVIGATION_ID_PHONE, homePageUrl: 'IndexComp',
         options: {
           standardAnimator: HMDefaultGlobalAnimator.STANDARD_ANIMATOR,
           dialogAnimator: HMDefaultGlobalAnimator.DIALOG_ANIMATOR,
           modifier: this.modifier
-        }
+        },
       })
     }
     .height('100%')

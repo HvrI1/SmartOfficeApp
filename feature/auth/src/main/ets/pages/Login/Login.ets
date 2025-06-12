@@ -1,8 +1,8 @@
-import { BacKNav, CommonConstants, PreferenceUtil, SimpleLoading} from 'basic'
+import { BacKNav, CommonConstants, PreferenceUtil, Result, SimpleLoading} from 'base'
 import { loginApi, queryUserInfoByUsernameApi } from '../../api/user'
 import { User, UserLoginDto } from '../../pojo'
 import { promptAction } from '@kit.ArkUI'
-import Logger from 'basic/src/main/ets/util/Logger'
+import Logger from 'base/src/main/ets/util/Logger'
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter'
 
 @HMRouter({ pageUrl: 'LoginComp' })
@@ -89,7 +89,7 @@ export struct Login {
       //中间logo和文字
       Column({space:5}){
         //logo
-        Image($r("[basic].media.logo"))
+        Image($r("app.media.logo"))
           .width(50)
           .aspectRatio(1)
         //文字

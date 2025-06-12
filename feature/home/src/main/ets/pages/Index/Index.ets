@@ -4,10 +4,15 @@ import { Contacts } from './Contacts'
 import { Mine } from './Mine'
 import { Work } from './Work'
 import { HMRouter } from '@hadss/hmrouter'
+import { BreakpointConstants, CommonConstants } from 'base'
 
-@HMRouter({ pageUrl: 'IndexComp' })
+@HMRouter({ pageUrl: 'IndexComp' ,interceptors:["LoginCheckInterceptor"]})
 @Component
 export  struct Index {
+
+
+  @StorageProp(BreakpointConstants.CURRENT_BREAKPOINT)
+  currentBreakPoint:string = "sm"
 
   //tab的数据
   tabList:TabClass[] = [
@@ -55,7 +60,7 @@ export  struct Index {
   build() {
     Column(){
       //tabs区域
-      Tabs({barPosition:BarPosition.End,index:$$this.currentIndex}){
+      Tabs({barPosition:this.currentBreakPoint==="lg"?BarPosition.Start:BarPosition.End,index:$$this.currentIndex}){
         ForEach(this.tabList,(item:TabClass,index:number)=>{
          TabContent(){
            if(item.name==="house"){
@@ -76,9 +81,9 @@ export  struct Index {
         })
       }
       .barBackgroundColor($r("app.color.tabs_bar_background"))
+      .vertical(this.currentBreakPoint==="lg"?true:false)
     }
     .width("100%")
     .height("100%")
-
   }
 }

@@ -1,4 +1,4 @@
-import { RequestAxios, Result } from "basic"
+import { RequestAxios, Result } from "base"
 import { AdvertInfo, getAdvertDto } from "../pojo"
 
 export const getAdvertByPosition = async (getAdvertDto:getAdvertDto)=>{

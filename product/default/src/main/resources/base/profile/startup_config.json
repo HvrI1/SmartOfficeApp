@@ -5,7 +5,20 @@
       "srcEntry": "./ets/startup/HMRouterInitStartupTask.ets",
       "runOnThread": "mainThread",
       "waitOnMainThread": true
+    },
+    {
+      "name": "PrefUtilInitStartupTask",
+      "srcEntry": "./ets/startup/PrefUtilInitStartupTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true
+    },
+    {
+      "name": "DbUtilInitStartupTask",
+      "srcEntry": "./ets/startup/DbUtilInitStartupTask.ets",
+      "runOnThread": "mainThread",
+      "waitOnMainThread": true
     }
+
   ],
   "configEntry": "./ets/startup/StartupConfig.ets"
 }

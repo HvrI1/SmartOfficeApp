@@ -1,10 +1,12 @@
-import { CommonConstants, PreferenceUtil, TitlePicNav, } from "basic"
+import { CommonConstants, PreferenceUtil, TitlePicNav, } from "base"
 import { ApprovalNumInfo, ApprovalNumModel, TabClass, User, UserModel } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
 import { HMRouterMgr } from "@hadss/hmrouter"
 
 @Component
 export struct Mine{
+  @StorageProp(CommonConstants.AVOID_RECT_HEIGHT_TOP)
+  avoidTopHeight:number = 0
   //状态：单向取出当前用户事务处理数据
   @StorageProp(CommonConstants.APP_STORAGE_USER_AFFAIR_NUM)
   approvalNumData:ApprovalNumInfo = new ApprovalNumModel({
@@ -103,7 +105,7 @@ export struct Mine{
       //顶部信息区域
       Row({space:20}){
         //头像
-        Image(this.userInfo.profilePhoto?this.userInfo.profilePhoto:$r("[basic].media.null_user"))
+        Image(this.userInfo.profilePhoto?this.userInfo.profilePhoto:$r("app.media.null_user"))
           .width(50)
           .aspectRatio(1)
           .borderRadius(50)
@@ -130,13 +132,13 @@ export struct Mine{
         .justifyContent(FlexAlign.SpaceBetween)
       }
       .width("90%")
-      .height(120)
+      .height(70)
       //内容区域
       Column(){
         //卡片信息
         Row({space:10}){
           Row({space:10}){
-            Image($r("[basic].media.computer_icon"))
+            Image($r("app.media.computer_icon"))
               .width(50)
               .aspectRatio(1)
             Column({space:10}){
@@ -161,7 +163,7 @@ export struct Mine{
             //事务待办回调
           })
           Row({space:10}){
-            Image($r("[basic].media.message_icon"))
+            Image($r("app.media.message_icon"))
               .width(50)
               .aspectRatio(1)
             Column({space:10}){
@@ -233,7 +235,7 @@ export struct Mine{
       }
       .width("100%")
       .height("100%")
-      .padding({bottom:10})
+      .padding({bottom:55,top:this.avoidTopHeight})
       .linearGradient({angle:180,colors:[["#828bfc",0],["#f4f8fb",1]]})
       .align(Alignment.Top)
   }

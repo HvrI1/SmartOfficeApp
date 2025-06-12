@@ -119,6 +119,10 @@
     {
       "name": "MeetingCheckList_finish_state_font",
       "value": "16vp"
+    },
+    {
+      "name": "font_size",
+      "value": "14fp"
     }
   ]
 }

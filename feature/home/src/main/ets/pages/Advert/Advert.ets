@@ -1,4 +1,4 @@
-import { CommonConstants, Result } from 'basic'
+import { CommonConstants, Result } from 'base'
 import { AdvertInfo, AdvertModel, User, UserModel } from '../../pojo'
 import { promptAction } from '@kit.ArkUI'
 import { getAdvertByPosition } from '../../api'

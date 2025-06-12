@@ -1,12 +1,12 @@
 import dayjs from '@hview/dayjs'
-import { BacKNav, CommonConstants } from 'basic'
+import { BacKNav, CommonConstants } from 'base'
 import { insertAttendanceApi, queryUserAttendanceInfoApi } from '../../api'
 import { AttendanceInfo, AttendanceModel, User, UserModel } from '../../pojo'
 import { ClockInCard } from './ClockInCard'
 import { promptAction } from '@kit.ArkUI'
 import { HMRouter } from '@hadss/hmrouter'
 
-@HMRouter({pageUrl:"ClockInComp"})
+@HMRouter({pageUrl:"ClockInComp",interceptors:["CheckPermissionInterceptor"]})
 @Component
 export  struct ClockIn {
 

@@ -1,5 +1,5 @@
 import { webview } from "@kit.ArkWeb"
-import { WebSdkClass } from "basic"
+import { WebSdkClass } from "base"
 
 import { Permissions } from "@kit.AbilityKit"
 import { WebAddressResp } from "../../pojo"
@@ -72,7 +72,7 @@ export struct WebCustomDiaLog{
   build() {
     Column(){
       Web({
-        src:$rawfile("[basic].location.html"),
+        src:$rawfile("location.html"),
         controller:WebSdkClass.webController
       })
         .width("100%")

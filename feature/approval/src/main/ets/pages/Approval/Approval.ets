@@ -1,15 +1,23 @@
-import { BacKNav, CommonConstants, ListDataSource, ProgressCard, SimpleLoading } from 'basic'
+import { BacKNav, CommonConstants, IPCManagerClass, ListDataSource, ProgressCard,
+  PublishEventType,
+  SimpleLoading } from 'base'
 import { execApprovalApi, getAffairApi } from '../../api';
 import { AffairInfo, ApprovalDto, ApprovalNumInfo, ApprovalNumModel } from '../../pojo';
 import { promptAction } from '@kit.ArkUI';
 import { ApprovalDialog } from './ApprovalDialog';
 import { HMRouter } from '@hadss/hmrouter';
+import { ApprovalModel } from '../../model';
+import { connection } from '@kit.NetworkKit';
+import { emitter } from '@kit.BasicServicesKit';
+import { formBindingData, formProvider } from '@kit.FormKit';
 
 
 @HMRouter({ pageUrl: 'ApprovalComp' })
 @Component
 export  struct Approval {
 
+  //属性：ApprovalModel
+  private store:ApprovalModel =  new  ApprovalModel()
   //属性：操作lazyForeach数据源的对象ListDataSource
   lazyDataSource:ListDataSource = new ListDataSource()
   //状态：当前所有事务的数据
@@ -168,20 +176,21 @@ export  struct Approval {
     })
     //弹窗
     this.controller.open()
+
+
   }
 
 
 
   //方法：计算总数，待办和拒绝的数量
   computeAffairTypeNum(affairInfoList:AffairInfo[]){
-    console.log(JSON.stringify(affairInfoList))
     affairInfoList.forEach((item:AffairInfo,index:number)=>{
       if(item.status === "待办") this.approvalNumData.currentWaitingNum++
       if(item.status === "已完成") this.approvalNumData.currentFinishNum++
       if(item.status === "拒绝") this.approvalNumData.currentRejectNum++
       this.approvalNumData.currentAllAffairNum++
-
     })
+
   }
 
   //方法：过滤待办列表
@@ -193,19 +202,38 @@ export  struct Approval {
 
   //请求所有的事务数据
   async getAllAffairData(){
-    const res =  await getAffairApi()
-    if(res.code===200){
+
+    try {
+
+      const  res =  await getAffairApi()
+      if(res.code===200){
+        //清空数据库“approval”表的数据
+        await this.store.deleteTablet("approval")
+        //建表
+        await this.store.createApprovalTablet()
+        await this.store.insertApprovalListData(res.data as AffairInfo[])
+        //调用过滤待办列表
+        this.filterWaitingList(res.data as AffairInfo[])
+        //调用计算总数，待办和拒绝的数量
+        this.computeAffairTypeNum(res.data as AffairInfo[])
+      }else {
+        promptAction.showToast({message:res.message})
+      }
+    }catch (e) {
+      //异常超时查询查询本地数据
+      const affairInfos = await this.store.selectApprovalListData() as AffairInfo[]
       //调用过滤待办列表
-      this.filterWaitingList(res.data as AffairInfo[])
+      this.filterWaitingList(affairInfos)
       //调用计算总数，待办和拒绝的数量
-      this.computeAffairTypeNum(res.data as AffairInfo[])
-    }else {
-      promptAction.showToast({message:res.message})
+      this.computeAffairTypeNum(affairInfos)
     }
   }
 
+
+
+
   //刷新操作
-  refresh(){
+  async refresh(){
     //清空数据
     this.affairWaitingList = []
     this.approvalNumData = new ApprovalNumModel({
@@ -229,6 +257,17 @@ export  struct Approval {
   aboutToAppear(): void {
     //页面构建时加载数据
     this.refresh()
+    
+    //订阅
+    IPCManagerClass.subscribe(PublishEventType.CARD_PUBLISH,undefined,(res)=>{
+      let param: Record<string, number> = {
+        'wait': this.approvalNumData.currentWaitingNum,
+        'complete': this.approvalNumData.currentFinishNum,
+        'reject':this.approvalNumData.currentRejectNum
+      }
+      let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+      formProvider.updateForm(res,obj)
+    })
   }
 
   build() {

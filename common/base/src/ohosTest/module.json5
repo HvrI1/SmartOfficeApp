@@ -1,9 +1,10 @@
 {
   "module": {
-    "name": "basic_test",
+    "name": "base_test",
     "type": "feature",
     "deviceTypes": [
-      "phone"
+      "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false

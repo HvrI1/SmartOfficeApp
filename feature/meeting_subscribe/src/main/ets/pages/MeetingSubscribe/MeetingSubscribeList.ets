@@ -2,7 +2,7 @@ import { queryAllMeetingRoomApi, subscribeMeetingApi } from "../../api"
 import { MeetingRoomInfo, SubscribeMeetingDDDInfo } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
 import { MeetingSubscribeDiaLog } from "./MeetingSubscribeDiaLog"
-import { ListDataSource, SimpleLoading } from "basic"
+import { ListDataSource, SimpleLoading } from "base"
 
 @Component
 export struct MeetingSubscribeList{

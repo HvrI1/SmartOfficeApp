@@ -17,7 +17,7 @@ export class BreakpointConstants {
    */
   static readonly CURRENT_BREAKPOINT: string = "currentBreakpoint";
   /**
-   * 判断是否折叠
+   * 判断是否折叠(分屏)
    */
   static readonly IS_SPLIT_MODE: string = "isSplitMode";
   /**

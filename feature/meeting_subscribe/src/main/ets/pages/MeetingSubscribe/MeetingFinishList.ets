@@ -1,4 +1,4 @@
-import { CommonConstants, ListDataSource } from "basic"
+import { CommonConstants, ListDataSource } from "base"
 import { queryAllMeetingSubscribeInfoApi } from "../../api"
 import { MeetingSubscribeInfo, User } from "../../pojo"
 import { promptAction } from "@kit.ArkUI"
@@ -135,7 +135,6 @@ export struct MeetingFinishList{
     const res = await queryAllMeetingSubscribeInfoApi(this.userInfo.id)
     if(res.code===200){
       this.meetingSubscribeList = res.data as MeetingSubscribeInfo[]
-      console.log(JSON.stringify(this.meetingSubscribeList))
       this.refreshing = false
     }else {
       promptAction.showToast({message:res.message})

@@ -1,4 +1,4 @@
-import { RequestAxios,Result } from "basic"
+import { RequestAxios,Result } from "base"
 import { MeetingRoomInfo, MeetingSubscribeInfo, SubscribeMeetingDDDInfo } from "../pojo"
 
 export const queryAllMeetingRoomApi =async ()=>{

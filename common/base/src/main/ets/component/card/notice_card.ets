@@ -4,6 +4,7 @@ export struct NoticeCard{
   @Require img:ResourceStr =""
   @Require date:string = ""
   @Require viewNum:number = 0
+  @Require IHeight:number = 0
 
   clickCallBack=()=>{}
 
@@ -56,7 +57,7 @@ export struct NoticeCard{
       }
     }
     .width("100%")
-    .height(100)
+    .height(this.IHeight)
     .padding(10)
     .borderRadius(10)
     .backgroundColor($r("app.color.card_background"))

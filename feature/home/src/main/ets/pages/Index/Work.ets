@@ -1,4 +1,4 @@
-import { CommonConstants, ListDataSource, TitleNav,  WorkCardNormal } from "basic"
+import { CommonConstants, ListDataSource, TitleNav,  WorkCardNormal } from "base"
 import { ApprovalNumInfo,
   ApprovalNumModel,
   CarSubscribeInfo, MeetingSubscribeInfo,
@@ -9,7 +9,8 @@ import { HMRouterMgr } from "@hadss/hmrouter"
 
 @Component
 export struct Work{
-
+  @StorageProp(CommonConstants.AVOID_RECT_HEIGHT_TOP)
+  avoidTopHeight:number = 0
   //状态：从AppStorage中同步用户信息数据
   @StorageProp(CommonConstants.APP_STORAGE_USER)
   userInfo:User= new UserModel({} as User)
@@ -329,7 +330,7 @@ export struct Work{
         Stack({alignContent:Alignment.End}){
           Row({space:20}){
             //头像
-              Image(this.userInfo.profilePhoto?this.userInfo.profilePhoto:$r("[basic].media.null_user"))
+              Image(this.userInfo.profilePhoto?this.userInfo.profilePhoto:$r("app.media.null_user"))
                 .width(50)
                 .aspectRatio(1)
                 .borderRadius(50)
@@ -376,7 +377,7 @@ export struct Work{
           .margin({right:15})
         }
         .width("90%")
-        .height(100)
+        .height(70)
         //待我审批和我发起的卡片区域
         Row({space:10}){
           //待我审批
@@ -545,7 +546,7 @@ export struct Work{
     }
     .width("100%")
     .height("100%")
-    .padding({bottom:10})
+    .padding({bottom:55,top:this.avoidTopHeight})
     .linearGradient({angle:180,colors:[["#828bfc",0],["#f4f8fb",1]]})
     .align(Alignment.Top)
   }

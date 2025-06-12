@@ -4,6 +4,7 @@ export struct HandleCardNormal{
 
   @Require title:string =""
   @Require text:string =""
+  @Require IHeight:number= 0
   bgColor?:[ResourceColor,number][] = [["#9966bb",0],["#6699bb",1]]
   clickCallBack=()=>{}
   build() {
@@ -26,7 +27,7 @@ export struct HandleCardNormal{
         .textOverflow({overflow:TextOverflow.Ellipsis})
         .padding({left:5,right:5})
     }
-    .width(110)
+    .width(this.IHeight)
     .aspectRatio(1)
     .borderRadius(10)
     .justifyContent(FlexAlign.Center)

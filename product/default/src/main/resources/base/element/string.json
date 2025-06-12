@@ -19,6 +19,22 @@
     {
       "name": "location",
       "value": "精确定位"
+    },
+    {
+      "name": "approvalFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "approvalFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "approval_widget_desc",
+      "value": "approvaldata"
+    },
+    {
+      "name": "approval_widget_display_name",
+      "value": "approval"
     }
   ]
 }

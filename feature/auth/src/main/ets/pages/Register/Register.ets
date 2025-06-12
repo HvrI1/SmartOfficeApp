@@ -1,18 +1,18 @@
-import { BacKNav, CommonConstants, SimpleLoading } from 'basic'
+import { BacKNav, CommonConstants, SimpleLoading } from 'base'
 import {  UserRegisterDto } from '../../pojo'
 import { photoAccessHelper } from '@kit.MediaLibraryKit'
 import { promptAction } from '@kit.ArkUI'
 import { registerApi } from '../../api'
 import { taskpool } from '@kit.ArkTS'
 import { UploadAvatarTask } from '../../service'
-import Logger from 'basic/src/main/ets/util/Logger'
+import Logger from 'base/src/main/ets/util/Logger'
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter'
 
 @HMRouter({ pageUrl: 'RegisterComp' })
 @Component
 export struct Register {
   //状态：头像地址，上传头像后动态更新
-  @State photoUrl:ResourceStr = $r("[basic].media.null_user")
+  @State photoUrl:ResourceStr = $r("app.media.null_user")
   //状态：注册所需的dto对象
   @State @Watch("checkDataFormat") user:UserRegisterDto = {
     username:"",

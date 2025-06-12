@@ -1,6 +1,6 @@
 import { HMRouter } from '@hadss/hmrouter'
 import dayjs from '@hview/dayjs'
-import { BacKNav } from 'basic'
+import { BacKNav } from 'base'
 import {  CalendarAttendance } from './Calendar'
 
 @HMRouter({pageUrl:"AttendanceComp"})
